@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="fa_tab_title">
+        <item>使用说明</item>
+        <item>依百分比</item>
+        <item>依金额</item>
+    </string-array>
+
+    <string name="fa_instruction_1">第一步</string>
+    <string name="fa_instruction_2">第二步</string>
+    <string name="fa_instruction_3">第三步</string>
+    <string name="fa_instruction_4">第四步</string>
+
+    <string name="fa_month_income">每月收入</string>
+    <string name="fa_taxes">预扣所得税</string>
+    <string name="fa_after_taxes">每月税后收入</string>
+    <string name="fa_finance">投资理财账户</string>
+    <string name="fa_grow">自我成长账户</string>
+    <string name="fa_play">尽情娱乐账户</string>
+    <string name="fa_long_plan">长期计划账户</string>
+    <string name="fa_prepare_1">预备账户1</string>
+    <string name="fa_prepare_2">预备账户2</string>
+    <string name="fa_prepare_3">预备账户3</string>
+    <string name="fa_necessary">生活必需支出</string>
+    <string name="fa_left">剩余可支配金额</string>
+
+    <string name="fa_instruction_content_1">填入每个月工作所得。</string>
+    <string name="fa_instruction_content_2">填入预估每个月所得税金额，下方会自动算出每月税后可支配收入。</string>
+    <string name="fa_instruction_content_3"><Data><![CDATA[分配税后收入到不同功能账户，账户名称可自行修改。<br/>
+    <font color="#333333">版本1，依金额输入：<br/></font>
+    在黃色区下方填入每月要分配的<font color="#E13E3F">金额数字</font>，右边会自动算出该账户金额占税后收入百分比。<br/>
+    <font color="#333333">版本2，依百分比输入：<br/></font>
+    在黃色区下方填入每月要分配税后收入的<font color="#E13E3F">百分比</font>，右边会自动算出该账户所需分配金额。
+    ]]></Data></string>
+    <string name="fa_instruction_content_4">填入每月生活必需支出费用（版本1）或百分比（版本2），下方会算出尚未分配的税后收入还剩余多少。</string>
+
+</resources>

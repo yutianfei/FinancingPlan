@@ -1,0 +1,56 @@
+<resources>
+
+    <style name="fa_instruction_stage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/common_dark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="fa_instruction_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/common_light</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+    </style>
+
+    <style name="fa_wrap_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="fa_card_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="fa_edit_label">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1.5</item>
+        <item name="android:background">@color/common_yellow</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/common_dark</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="fa_edit_input">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/common_dark</item>
+        <item name="android:gravity">right</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+</resources>

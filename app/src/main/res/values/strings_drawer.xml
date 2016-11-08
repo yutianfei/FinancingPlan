@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="title_function_assign">功能账户现金流分配器</string>
+    <string name="title_account_books">电子理财记帐本</string>
+    <string name="title_52_challenge">52周存钱挑战表</string>
+    <string name="title_cash_map">现金流分配地图</string>
+    
+</resources>
