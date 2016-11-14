@@ -15,87 +15,87 @@ public class FunctionAssignDBModel extends DataSupport {
     /**
      * 月收入
      */
-    String month_income;
+    public String month_income;
     /**
      * 预扣所得税
      */
-    String taxes;
+    public String taxes;
     /**
      * 每月税后收入
      */
-    String after_taxes;
+    public String after_taxes;
     /**
      * 每月税后收入百分比
      */
-    String after_taxes_percent;
+    public String after_taxes_percent;
     /**
      * 投资理财账户
      */
-    String finance;
+    public String finance;
     /**
      * 投资理财账户百分比
      */
-    String finance_percent;
+    public String finance_percent;
     /**
      * 自我成长账户
      */
-    String grow;
+    public String grow;
     /**
      * 自我成长账户百分比
      */
-    String grow_percent;
+    public String grow_percent;
     /**
      * 尽情娱乐账户
      */
-    String play;
+    public String play;
     /**
      * 尽情娱乐账户百分比
      */
-    String play_percent;
+    public String play_percent;
     /**
      * 长期计划账户
      */
-    String long_plan;
+    public String long_plan;
     /**
      * 长期计划账户百分比
      */
-    String long_plan_percent;
+    public String long_plan_percent;
     /**
      * 预备账户1
      */
-    String prepare_1;
+    public String prepare_1;
     /**
      * 预备账户1百分比
      */
-    String prepare_1_percent;
+    public String prepare_1_percent;
     /**
      * 预备账户2
      */
-    String prepare_2;
+    public String prepare_2;
     /**
      * 预备账户2百分比
      */
-    String prepare_2_percent;
+    public String prepare_2_percent;
     /**
      * 预备账户3
      */
-    String prepare_3;
+    public String prepare_3;
     /**
      * 预备账户3百分比
      */
-    String prepare_3_percent;
+    public String prepare_3_percent;
     /**
      * 生活必需支出
      */
-    String necessary;
+    public String necessary;
     /**
      * 生活必需支出百分比
      */
-    String necessary_percent;
+    public String necessary_percent;
     /**
      * 剩余可支配金额
      */
-    String left;
+    public String left;
 
     public static FunctionAssignDBModel initDBModel(int flag) {
         FunctionAssignDBModel dbModel = new FunctionAssignDBModel();

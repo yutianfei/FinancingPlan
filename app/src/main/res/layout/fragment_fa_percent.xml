@@ -118,13 +118,13 @@
                                 android:text="@string/fa_after_taxes" />
 
                             <EditText
-                                android:id="@+id/fa_after_taxes_input"
+                                android:id="@+id/fa_after_taxes_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
                                 android:text="@{model.after_taxes}" />
 
                             <EditText
-                                android:id="@+id/fa_after_taxes_fixed"
+                                android:id="@+id/fa_after_taxes_percent_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
                                 android:text="@{model.after_taxes_percent}" />
@@ -384,7 +384,7 @@
                                 android:text="@string/fa_left" />
 
                             <EditText
-                                android:id="@+id/fa_left_input"
+                                android:id="@+id/fa_left_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
                                 android:text="@{model.left}" />

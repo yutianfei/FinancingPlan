@@ -1,6 +1,8 @@
 package com.wsy.plan.function.utils;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -9,9 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wsy.plan.R;
+import com.wsy.plan.function.model.FunctionAssignDBModel;
 import com.wsy.plan.function.model.FunctionAssignModel;
 import com.wsy.plan.function.presenter.IFunctionModelPresenter;
 import com.wsy.plan.function.presenter.LocalPresenter;
+
+import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
 
 public class EditTextDoubleUse implements TextView.OnEditorActionListener {
 
@@ -19,6 +26,19 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
     private FunctionAssignModel model;
     private int flag;
     private IFunctionModelPresenter presenter;
+    private FunctionAssignDBModel dbModel;
+
+    private EditText editMonthIncome;
+    private EditText editTaxes;
+    private EditText editFinance;
+    private EditText editGrow;
+    private EditText editPlay;
+    private EditText editLongPlan;
+    private EditText editPrepare1;
+    private EditText editPrepare2;
+    private EditText editPrepare3;
+    private EditText editNecessary;
+    private EditText editLeft;
 
     public static EditTextDoubleUse getInstance(View rootView, FunctionAssignModel model, int flag) {
         return new EditTextDoubleUse(rootView, model, flag);
@@ -32,51 +52,31 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
     }
 
     public void initEditText() {
-        EditText editMonthIncome = (EditText) rootView.findViewById(R.id.fa_month_income_input);
-        EditText editTaxes = (EditText) rootView.findViewById(R.id.fa_taxes_input);
-        EditText editAfterTaxes = (EditText) rootView.findViewById(R.id.fa_after_taxes_input);
-        EditText editAfterTaxesPercent = (EditText) rootView.findViewById(R.id.fa_after_taxes_fixed);
-        EditText editFinance = (EditText) rootView.findViewById(R.id.fa_finance_input);
-        EditText editFinancePercent = (EditText) rootView.findViewById(R.id.fa_finance_fixed);
-        EditText editGrow = (EditText) rootView.findViewById(R.id.fa_grow_input);
-        EditText editGrowPercent = (EditText) rootView.findViewById(R.id.fa_grow_fixed);
-        EditText editPlay = (EditText) rootView.findViewById(R.id.fa_play_input);
-        EditText editPlayPercent = (EditText) rootView.findViewById(R.id.fa_play_fixed);
-        EditText editLongPlan = (EditText) rootView.findViewById(R.id.fa_long_plan_input);
-        EditText editLongPlanPercent = (EditText) rootView.findViewById(R.id.fa_long_plan_fixed);
-        EditText editPrepare1 = (EditText) rootView.findViewById(R.id.fa_prepare_1_input);
-        EditText editPrepare1Percent = (EditText) rootView.findViewById(R.id.fa_prepare_1_fixed);
-        EditText editPrepare2 = (EditText) rootView.findViewById(R.id.fa_prepare_2_input);
-        EditText editPrepare2Percent = (EditText) rootView.findViewById(R.id.fa_prepare_2_fixed);
-        EditText editPrepare3 = (EditText) rootView.findViewById(R.id.fa_prepare_3_input);
-        EditText editPrepare3Percent = (EditText) rootView.findViewById(R.id.fa_prepare_3_fixed);
-        EditText editNecessary = (EditText) rootView.findViewById(R.id.fa_necessary_input);
-        EditText editNecessaryPercent = (EditText) rootView.findViewById(R.id.fa_necessary_fixed);
-        EditText editLeft = (EditText) rootView.findViewById(R.id.fa_left_input);
+        editMonthIncome = (EditText) rootView.findViewById(R.id.fa_month_income_input);
+        editTaxes = (EditText) rootView.findViewById(R.id.fa_taxes_input);
+        editFinance = (EditText) rootView.findViewById(R.id.fa_finance_input);
+        editGrow = (EditText) rootView.findViewById(R.id.fa_grow_input);
+        editPlay = (EditText) rootView.findViewById(R.id.fa_play_input);
+        editLongPlan = (EditText) rootView.findViewById(R.id.fa_long_plan_input);
+        editPrepare1 = (EditText) rootView.findViewById(R.id.fa_prepare_1_input);
+        editPrepare2 = (EditText) rootView.findViewById(R.id.fa_prepare_2_input);
+        editPrepare3 = (EditText) rootView.findViewById(R.id.fa_prepare_3_input);
+        editNecessary = (EditText) rootView.findViewById(R.id.fa_necessary_input);
+        editLeft = (EditText) rootView.findViewById(R.id.fa_left_fixed);
 
         editMonthIncome.setOnEditorActionListener(this);
         editTaxes.setOnEditorActionListener(this);
-        editAfterTaxes.setOnEditorActionListener(this);
-        editAfterTaxesPercent.setOnEditorActionListener(this);
         editFinance.setOnEditorActionListener(this);
-        editFinancePercent.setOnEditorActionListener(this);
         editGrow.setOnEditorActionListener(this);
-        editGrowPercent.setOnEditorActionListener(this);
         editPlay.setOnEditorActionListener(this);
-        editPlayPercent.setOnEditorActionListener(this);
         editLongPlan.setOnEditorActionListener(this);
-        editLongPlanPercent.setOnEditorActionListener(this);
         editPrepare1.setOnEditorActionListener(this);
-        editPrepare1Percent.setOnEditorActionListener(this);
         editPrepare2.setOnEditorActionListener(this);
-        editPrepare2Percent.setOnEditorActionListener(this);
         editPrepare3.setOnEditorActionListener(this);
-        editPrepare3Percent.setOnEditorActionListener(this);
         editNecessary.setOnEditorActionListener(this);
-        editNecessaryPercent.setOnEditorActionListener(this);
-        editLeft.setOnEditorActionListener(this);
 
-        model.setData(presenter.getDBModel(flag));
+        dbModel = presenter.getDBModel(flag);
+        updateModel();
     }
 
     @Override
@@ -98,7 +98,86 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
      * 重新计算并显示
      */
     private void compute() {
-        model.month_income.set("5000");
-        model.after_taxes.set("3000");
+        // 月收入
+        dbModel.month_income = editMonthIncome.getText().toString();
+        // 预扣税
+        dbModel.taxes = editTaxes.getText().toString();
+        // 税后收入
+        dbModel.after_taxes = BigDecimalUtils.sub(dbModel.month_income, dbModel.taxes);
+        // 其他数据
+        switch (flag) {
+            case FunctionAssignModel.FLAG_PERCENT:
+                setPercentData();
+                break;
+            case FunctionAssignModel.FLAG_CASH:
+                setCashData();
+                break;
+        }
+        // 剩余可支配金额
+        String[] values = {dbModel.finance, dbModel.grow, dbModel.play, dbModel.long_plan,
+                dbModel.prepare_1, dbModel.prepare_2, dbModel.prepare_3, dbModel.necessary};
+        dbModel.left = BigDecimalUtils.sub(dbModel.after_taxes, BigDecimalUtils.add(values));
+        // 保存修改的数据
+        dbModel.save();
+        // 更新数据显示
+        updateModel();
+    }
+
+    /**
+     * 更新数据显示
+     */
+    private void updateModel() {
+        // 设置数据
+        model.setData(dbModel);
+        // 设置字体颜色
+        editLeft.setTextColor(dbModel.left.contains("-") ? Color.RED : Color.parseColor("#333333"));
+    }
+
+    private void setCashData() {
+        dbModel.finance = editFinance.getText().toString();
+        dbModel.finance_percent = BigDecimalUtils.divide(dbModel.finance, dbModel.after_taxes);
+        dbModel.grow = editGrow.getText().toString();
+        dbModel.grow_percent = BigDecimalUtils.divide(dbModel.grow, dbModel.after_taxes);
+        dbModel.play = editPlay.getText().toString();
+        dbModel.play_percent = BigDecimalUtils.divide(dbModel.play, dbModel.after_taxes);
+        dbModel.long_plan = editLongPlan.getText().toString();
+        dbModel.long_plan_percent = BigDecimalUtils.divide(dbModel.long_plan, dbModel.after_taxes);
+        dbModel.prepare_1 = editPrepare1.getText().toString();
+        dbModel.prepare_1_percent = BigDecimalUtils.divide(dbModel.prepare_1, dbModel.after_taxes);
+        dbModel.prepare_2 = editPrepare2.getText().toString();
+        dbModel.prepare_2_percent = BigDecimalUtils.divide(dbModel.prepare_2, dbModel.after_taxes);
+        dbModel.prepare_3 = editPrepare3.getText().toString();
+        dbModel.prepare_3_percent = BigDecimalUtils.divide(dbModel.prepare_3, dbModel.after_taxes);
+        dbModel.necessary = editNecessary.getText().toString();
+        dbModel.necessary_percent = BigDecimalUtils.divide(dbModel.necessary, dbModel.after_taxes);
+    }
+
+    private void setPercentData() {
+        dbModel.finance_percent = formatString(editFinance.getText().toString());
+        dbModel.finance = BigDecimalUtils.multiply(dbModel.finance_percent, dbModel.after_taxes);
+        dbModel.grow_percent = formatString(editGrow.getText().toString());
+        dbModel.grow = BigDecimalUtils.multiply(dbModel.grow_percent, dbModel.after_taxes);
+        dbModel.play_percent = formatString(editPlay.getText().toString());
+        dbModel.play = BigDecimalUtils.multiply(dbModel.play_percent, dbModel.after_taxes);
+        dbModel.long_plan_percent = formatString(editLongPlan.getText().toString());
+        dbModel.long_plan = BigDecimalUtils.multiply(dbModel.long_plan_percent, dbModel.after_taxes);
+        dbModel.prepare_1_percent = formatString(editPrepare1.getText().toString());
+        dbModel.prepare_1 = BigDecimalUtils.multiply(dbModel.prepare_1_percent, dbModel.after_taxes);
+        dbModel.prepare_2_percent = formatString(editPrepare2.getText().toString());
+        dbModel.prepare_2 = BigDecimalUtils.multiply(dbModel.prepare_2_percent, dbModel.after_taxes);
+        dbModel.prepare_3_percent = formatString(editPrepare3.getText().toString());
+        dbModel.prepare_3 = BigDecimalUtils.multiply(dbModel.prepare_3_percent, dbModel.after_taxes);
+        dbModel.necessary_percent = formatString(editNecessary.getText().toString());
+        dbModel.necessary = BigDecimalUtils.multiply(dbModel.necessary_percent, dbModel.after_taxes);
+    }
+
+    private String formatString(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            if (!str.contains("%")) {
+                return str + "%";
+            }
+            return str;
+        }
+        return "0%";
     }
 }
