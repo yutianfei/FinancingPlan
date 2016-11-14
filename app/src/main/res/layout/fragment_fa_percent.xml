@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.wsy.plan.function.model.FunctionAssignModel" />
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <!-- 第一步 -->
+
+            <android.support.v7.widget.CardView style="@style/fa_card_layout">
+
+                <LinearLayout style="@style/fa_wrap_layout">
+
+                    <TextView
+                        style="@style/fa_instruction_stage"
+                        android:text="@string/fa_instruction_1" />
+
+                    <View
+                        style="@style/CommonDividerHorizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp" />
+
+                    <!-- 每月收入 -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/fa_month_income"
+                            style="@style/fa_edit_label"
+                            android:text="@string/fa_month_income" />
+
+                        <EditText
+                            android:id="@+id/fa_month_income_input"
+                            style="@style/fa_edit_input"
+                            android:text="@{model.month_income}" />
+
+                        <EditText
+                            style="@style/fa_edit_input"
+                            android:enabled="false"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 第二步 -->
+
+            <android.support.v7.widget.CardView style="@style/fa_card_layout">
+
+                <LinearLayout style="@style/fa_wrap_layout">
+
+                    <TextView
+                        style="@style/fa_instruction_stage"
+                        android:text="@string/fa_instruction_2" />
+
+                    <View
+                        style="@style/CommonDividerHorizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- 预扣所得税 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_taxes"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_taxes" />
+
+                            <EditText
+                                android:id="@+id/fa_taxes_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.taxes}" />
+
+                            <EditText
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+                        <!-- 税后收入 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_after_taxes"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_after_taxes" />
+
+                            <EditText
+                                android:id="@+id/fa_after_taxes_input"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.after_taxes}" />
+
+                            <EditText
+                                android:id="@+id/fa_after_taxes_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.after_taxes_percent}" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 第三步 -->
+
+            <android.support.v7.widget.CardView style="@style/fa_card_layout">
+
+                <LinearLayout style="@style/fa_wrap_layout">
+
+                    <TextView
+                        style="@style/fa_instruction_stage"
+                        android:text="@string/fa_instruction_3" />
+
+                    <View
+                        style="@style/CommonDividerHorizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- 投资理财账户 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_finance"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_finance" />
+
+                            <EditText
+                                android:id="@+id/fa_finance_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.finance_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_finance_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.finance}" />
+                        </LinearLayout>
+
+                        <!-- 自我成长账户 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_grow"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_grow" />
+
+                            <EditText
+                                android:id="@+id/fa_grow_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.grow_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_grow_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.grow}" />
+                        </LinearLayout>
+
+                        <!-- 尽情娱乐账户 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_play"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_play" />
+
+                            <EditText
+                                android:id="@+id/fa_play_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.play_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_play_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.play}" />
+                        </LinearLayout>
+
+                        <!-- 长期计划账户 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_long_plan"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_long_plan" />
+
+                            <EditText
+                                android:id="@+id/fa_long_plan_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.long_plan_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_long_plan_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.long_plan}" />
+                        </LinearLayout>
+
+                        <!-- 预备账户1 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_prepare_1"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_prepare_1" />
+
+                            <EditText
+                                android:id="@+id/fa_prepare_1_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.prepare_1_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_prepare_1_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.prepare_1}" />
+                        </LinearLayout>
+
+                        <!-- 预备账户2 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_prepare_2"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_prepare_2" />
+
+                            <EditText
+                                android:id="@+id/fa_prepare_2_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.prepare_2_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_prepare_2_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.prepare_2}" />
+                        </LinearLayout>
+
+                        <!-- 预备账户3 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_prepare_3"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_prepare_3" />
+
+                            <EditText
+                                android:id="@+id/fa_prepare_3_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.prepare_3_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_prepare_3_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.prepare_3}" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- 第四步 -->
+
+            <android.support.v7.widget.CardView style="@style/fa_card_layout">
+
+                <LinearLayout style="@style/fa_wrap_layout">
+
+                    <TextView
+                        style="@style/fa_instruction_stage"
+                        android:text="@string/fa_instruction_4" />
+
+                    <View
+                        style="@style/CommonDividerHorizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- 生活必需支出 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_necessary"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_necessary" />
+
+                            <EditText
+                                android:id="@+id/fa_necessary_input"
+                                style="@style/fa_edit_input"
+                                android:text="@{model.necessary_percent}" />
+
+                            <EditText
+                                android:id="@+id/fa_necessary_fixed"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.necessary}" />
+                        </LinearLayout>
+
+                        <!-- 剩余可支配金额 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/fa_left"
+                                style="@style/fa_edit_label"
+                                android:text="@string/fa_left" />
+
+                            <EditText
+                                android:id="@+id/fa_left_input"
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:text="@{model.left}" />
+
+                            <EditText
+                                style="@style/fa_edit_input"
+                                android:enabled="false"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

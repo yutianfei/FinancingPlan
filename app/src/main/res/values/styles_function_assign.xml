@@ -40,6 +40,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/common_dark</item>
         <item name="android:gravity">left</item>
+        <item name="android:imeOptions">actionDone</item>
     </style>
 
     <style name="fa_edit_input">
@@ -51,6 +52,7 @@
         <item name="android:textColor">@color/common_dark</item>
         <item name="android:gravity">right</item>
         <item name="android:inputType">numberDecimal</item>
+        <item name="android:imeOptions">actionDone</item>
     </style>
 
 </resources>
