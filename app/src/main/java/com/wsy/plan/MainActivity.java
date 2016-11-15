@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.wsy.plan.challenge.Challenge52Activity;
 import com.wsy.plan.function.FunctionAssignActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_52_challenge) {
             // 52周存钱挑战表
+            startActivity(new Intent(this, Challenge52Activity.class));
 
         } else if (id == R.id.nav_cash_map) {
             // 现金流分配地图

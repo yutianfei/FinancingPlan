@@ -21,7 +21,6 @@ import java.util.List;
 
 public class FunctionAssignActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

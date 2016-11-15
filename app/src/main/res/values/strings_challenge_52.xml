@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="challenge_per_week">预计每周多存几元？</string>
+    <string name="challenge_week_number">第%1$d周</string>
+    <string name="challenge_week_store">存入</string>
+    <string name="challenge_total">累计</string>
+    <string name="challenge_finished">完成</string>
+    <string name="challenge_ongoing">进行中</string>
+
+</resources>

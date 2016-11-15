@@ -6,7 +6,6 @@ import android.databinding.ObservableField;
 /**
  * 功能账户现金流分配数据模型
  */
-
 public class FunctionAssignModel extends BaseObservable {
 
     /**

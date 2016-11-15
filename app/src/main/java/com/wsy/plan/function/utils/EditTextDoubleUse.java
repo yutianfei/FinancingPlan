@@ -1,22 +1,18 @@
 package com.wsy.plan.function.utils;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.wsy.plan.R;
+import com.wsy.plan.common.MyEditorActionListener;
 import com.wsy.plan.function.model.FunctionAssignDBModel;
 import com.wsy.plan.function.model.FunctionAssignModel;
 import com.wsy.plan.function.presenter.IFunctionModelPresenter;
 import com.wsy.plan.function.presenter.LocalPresenter;
 
-public class EditTextDoubleUse implements TextView.OnEditorActionListener {
+public class EditTextDoubleUse {
 
     private View rootView;
     private FunctionAssignModel model;
@@ -36,6 +32,13 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
     private EditText editPrepare3;
     private EditText editNecessary;
     private EditText editLeft;
+
+    private MyEditorActionListener myEditorActionListener = new MyEditorActionListener() {
+        @Override
+        public void doSomething() {
+            compute();
+        }
+    };
 
     public static EditTextDoubleUse getInstance(View rootView, FunctionAssignModel model, int flag) {
         return new EditTextDoubleUse(rootView, model, flag);
@@ -61,16 +64,16 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
         editNecessary = (EditText) rootView.findViewById(R.id.fa_necessary_input);
         editLeft = (EditText) rootView.findViewById(R.id.fa_left_fixed);
 
-        editMonthIncome.setOnEditorActionListener(this);
-        editTaxes.setOnEditorActionListener(this);
-        editFinance.setOnEditorActionListener(this);
-        editGrow.setOnEditorActionListener(this);
-        editPlay.setOnEditorActionListener(this);
-        editLongPlan.setOnEditorActionListener(this);
-        editPrepare1.setOnEditorActionListener(this);
-        editPrepare2.setOnEditorActionListener(this);
-        editPrepare3.setOnEditorActionListener(this);
-        editNecessary.setOnEditorActionListener(this);
+        editMonthIncome.setOnEditorActionListener(myEditorActionListener);
+        editTaxes.setOnEditorActionListener(myEditorActionListener);
+        editFinance.setOnEditorActionListener(myEditorActionListener);
+        editGrow.setOnEditorActionListener(myEditorActionListener);
+        editPlay.setOnEditorActionListener(myEditorActionListener);
+        editLongPlan.setOnEditorActionListener(myEditorActionListener);
+        editPrepare1.setOnEditorActionListener(myEditorActionListener);
+        editPrepare2.setOnEditorActionListener(myEditorActionListener);
+        editPrepare3.setOnEditorActionListener(myEditorActionListener);
+        editNecessary.setOnEditorActionListener(myEditorActionListener);
 
         // 获取数据
         dbModel = presenter.getDBModel(flag);
@@ -82,21 +85,6 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
         }
         // 显示数据
         updateModel();
-    }
-
-    @Override
-    public boolean onEditorAction(TextView v, int i, KeyEvent keyEvent) {
-        if (i == EditorInfo.IME_ACTION_DONE) {
-            compute();
-            /* 隐藏软键盘 */
-            InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(
-                    Context.INPUT_METHOD_SERVICE);
-            if (imm.isActive()) {
-                imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
-            }
-            return true;
-        }
-        return false;
     }
 
     /**

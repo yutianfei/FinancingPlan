@@ -19,11 +19,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".function.FunctionAssignActivity"
             android:label="@string/title_activity_function_assign"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity android:name=".challenge.Challenge52Activity"
+            android:label="@string/title_activity_challenge_52"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 
 </manifest>

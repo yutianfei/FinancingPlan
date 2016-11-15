@@ -33,6 +33,7 @@
     -->
     <list>
         <mapping class="com.wsy.plan.function.model.FunctionAssignDBModel" />
+        <mapping class="com.wsy.plan.challenge.model.ChallengeDBModel" />
     </list>
 
     <!--

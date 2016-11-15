@@ -3,13 +3,12 @@ package com.wsy.plan.function.model;
 import org.litepal.crud.DataSupport;
 
 /**
- * 功能账户现金流分配数据模型
+ * 功能账户现金流分配数据数据库模型
  */
-
 public class FunctionAssignDBModel extends DataSupport implements Cloneable {
 
     /**
-     * 标志：区分依百分比和依金额（百分比：0；金额：1）
+     * 标志：区分依百分比和依金额（百分比：1；金额：2）
      */
     int flag;
     /**
