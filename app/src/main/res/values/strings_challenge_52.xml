@@ -5,7 +5,7 @@
     <string name="challenge_week_number">第%1$d周</string>
     <string name="challenge_week_store">存入</string>
     <string name="challenge_total">累计</string>
-    <string name="challenge_finished">完成</string>
-    <string name="challenge_ongoing">进行中</string>
+    <string name="challenge_finished">本周计划完成啦！</string>
+    <string name="challenge_undo">计划尚未完成&#8230;</string>
 
 </resources>

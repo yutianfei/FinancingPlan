@@ -50,7 +50,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="4dp"
                     android:contentDescription="@string/challenge_finished"
-                    android:onClick="@{() -> handlers.onClickWeekItem(item)}"
+                    android:onClick="@{(view) -> handlers.onClickWeekItem(view,item)}"
                     android:src="@{item.flag == 0 ? @drawable/undo : @drawable/finished}" />
             </RelativeLayout>
 

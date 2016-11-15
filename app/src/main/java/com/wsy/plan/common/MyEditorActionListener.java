@@ -11,13 +11,14 @@ public abstract class MyEditorActionListener implements TextView.OnEditorActionL
     @Override
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         if (i == EditorInfo.IME_ACTION_DONE) {
-            doSomething();
-            /* 隐藏软键盘 */
+            // 隐藏软键盘
             InputMethodManager imm = (InputMethodManager) textView.getContext().getSystemService(
                     Context.INPUT_METHOD_SERVICE);
             if (imm.isActive()) {
                 imm.hideSoftInputFromWindow(textView.getApplicationWindowToken(), 0);
             }
+            // 进行处理
+            doSomething();
             return true;
         }
         return false;
