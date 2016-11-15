@@ -10,4 +10,6 @@
 
     <string name="title_activity_function_assign">功能账户现金流分配器</string>
     <string name="title_activity_challenge_52">52周存钱挑战表</string>
+    <string name="title_activity_cash_map">现金流分配地图</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

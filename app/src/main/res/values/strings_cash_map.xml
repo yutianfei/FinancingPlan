@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="map_tab_title">
+        <item>使用说明</item>
+        <item>我的地图</item>
+    </string-array>
+
+    <string name="map_instruction">
+        1、将计划储存的紧急备用金月数填写在「少于_____个月」及「备足_____个月」空格里。\n
+        2、填入各功能账户的名称。\n
+        3、填入各功能账户预定每月分配的比例。(要以扣除所得税后的收入为分母去计算比例。)\n
+        4、将各功能账户预定每月分配比例相加，填写在「预存备金」右边。\n
+        5、将剩余比例填写在「生活费」右边。
+    </string>
+
+    <string name="map_example">【范例】</string>
+    <string name="map_mine">我的现金流分配地图</string>
+    <string name="map_month_income">工作收入</string>
+    <string name="map_taxes">预扣所得税</string>
+    <string name="map_after_taxes">税后收入</string>
+    <string name="map_mine_tip">提醒先支付自己</string>
+    <string name="map_backup">紧急备用金</string>
+    <string name="map_backup_store">存备用金</string>
+    <string name="map_less">少于</string>
+    <string name="map_more">备足</string>
+    <string name="map_month">个月</string>
+    <string name="map_finance">投资理财</string>
+    <string name="map_grow">自我成长</string>
+    <string name="map_play">尽情享乐</string>
+    <string name="map_long_plan">长期计划</string>
+    <string name="map_necessary">生活费</string>
+    <string name="map_percent">％</string>
+
+</resources>

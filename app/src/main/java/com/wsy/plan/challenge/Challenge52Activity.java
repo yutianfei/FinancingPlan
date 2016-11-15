@@ -2,13 +2,12 @@ package com.wsy.plan.challenge;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+import com.wsy.plan.BaseActivity;
 import com.wsy.plan.R;
 import com.wsy.plan.challenge.adapter.ChallengeListAdapter;
 import com.wsy.plan.challenge.model.ChallengeDBModel;
@@ -20,7 +19,7 @@ import com.wsy.plan.common.MyEditorActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Challenge52Activity extends AppCompatActivity {
+public class Challenge52Activity extends BaseActivity {
 
     private IChallengeModelPresenter presenter;
     private List<ChallengeDBModel> dbList;
@@ -64,21 +63,6 @@ public class Challenge52Activity extends AppCompatActivity {
             @Override
             public void doSomething() {
                 compute();
-            }
-        });
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            // Enable the Up button
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
             }
         });
     }

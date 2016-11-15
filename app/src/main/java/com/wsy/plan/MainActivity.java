@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.wsy.plan.challenge.Challenge52Activity;
 import com.wsy.plan.function.FunctionAssignActivity;
+import com.wsy.plan.map.CashMapActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,10 +85,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_account_books) {
-            // 电子理财记帐本
-
-        } else if (id == R.id.nav_function_assign) {
+        if (id == R.id.nav_function_assign) {
             // 功能账户现金流分配
             startActivity(new Intent(this, FunctionAssignActivity.class));
 
@@ -97,6 +95,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_cash_map) {
             // 现金流分配地图
+            startActivity(new Intent(this, CashMapActivity.class));
 
         } else if (id == R.id.nav_share) {
 

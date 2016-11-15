@@ -1,4 +1,4 @@
-package com.wsy.plan.function.adapter;
+package com.wsy.plan.common;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
