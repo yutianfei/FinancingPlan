@@ -101,6 +101,7 @@ public class Challenge52Activity extends AppCompatActivity {
                 model.store.set(dbModel.store);
                 model.total.set(dbModel.total);
             }
+            perWeekOriginal = text;
         }
     }
 
