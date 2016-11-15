@@ -16,10 +16,6 @@ import com.wsy.plan.function.model.FunctionAssignModel;
 import com.wsy.plan.function.presenter.IFunctionModelPresenter;
 import com.wsy.plan.function.presenter.LocalPresenter;
 
-import java.math.BigDecimal;
-import java.util.LinkedList;
-import java.util.List;
-
 public class EditTextDoubleUse implements TextView.OnEditorActionListener {
 
     private View rootView;
@@ -27,6 +23,7 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
     private int flag;
     private IFunctionModelPresenter presenter;
     private FunctionAssignDBModel dbModel;
+    private FunctionAssignDBModel dbModelOriginal; // 用于比较数据是否发生变化
 
     private EditText editMonthIncome;
     private EditText editTaxes;
@@ -75,7 +72,15 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
         editPrepare3.setOnEditorActionListener(this);
         editNecessary.setOnEditorActionListener(this);
 
+        // 获取数据
         dbModel = presenter.getDBModel(flag);
+        // 给作为比较的数据赋值
+        try {
+            dbModelOriginal = (FunctionAssignDBModel) dbModel.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        // 显示数据
         updateModel();
     }
 
@@ -117,10 +122,19 @@ public class EditTextDoubleUse implements TextView.OnEditorActionListener {
         String[] values = {dbModel.finance, dbModel.grow, dbModel.play, dbModel.long_plan,
                 dbModel.prepare_1, dbModel.prepare_2, dbModel.prepare_3, dbModel.necessary};
         dbModel.left = BigDecimalUtils.sub(dbModel.after_taxes, BigDecimalUtils.add(values));
-        // 保存修改的数据
-        dbModel.save();
-        // 更新数据显示
-        updateModel();
+        // 如果有变化，则更新并保存新数据
+        if (!dbModelOriginal.equals(dbModel)) {
+            // 保存修改的数据
+            presenter.updateDBModel(dbModel);
+            // 重新给作为比较的数据赋值
+            try {
+                dbModelOriginal = (FunctionAssignDBModel) dbModel.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            // 更新数据显示
+            updateModel();
+        }
     }
 
     /**

@@ -20,7 +20,7 @@ public class LocalPresenter implements IFunctionModelPresenter {
     }
 
     @Override
-    public FunctionAssignDBModel updateDBModel(int flag) {
-        return null;
+    public void updateDBModel(FunctionAssignDBModel dbModel) {
+        dbModel.save();
     }
 }
