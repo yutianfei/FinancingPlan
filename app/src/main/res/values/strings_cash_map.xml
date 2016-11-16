@@ -18,9 +18,9 @@
     <string name="map_mine">我的现金流\n分配地图</string>
     <string name="map_month_income">工作收入</string>
     <string name="map_taxes">预扣\n所得税</string>
-    <string name="map_after_taxes">税后收入</string>
-    <string name="map_mine_tip">提醒先支付自己</string>
-    <string name="map_backup">紧急备用金</string>
+    <string name="map_after_taxes">税后\n收入</string>
+    <string name="map_mine_tip">提醒先\n支付自己</string>
+    <string name="map_backup">紧急\n备用金</string>
     <string name="map_backup_store">存备用金</string>
     <string name="map_less">少于</string>
     <string name="map_more">备足</string>

@@ -10,7 +10,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/common_dark</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/shape_corner</item>
+        <item name="android:background">@drawable/shape_rectangle_corner</item>
     </style>
 
     <style name="map_no_bg_text">
@@ -19,6 +19,51 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/common_light</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="map_arrow_down_long">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:src">@drawable/arrow_down</item>
+    </style>
+
+    <style name="map_arrow_down_short" parent="map_arrow_down_long">
+        <item name="android:layout_height">15dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="map_input" parent="map_no_bg_text">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+    <style name="map_input_number" parent="map_input">
+        <item name="android:inputType">number</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="map_input_text" parent="map_corner_text">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:inputType">text</item>
+        <item name="android:layout_marginStart">46dp</item>
+        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="map_percent_bg">
+        <item name="android:layout_width">46dp</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/shape_circle</item>
     </style>
 
 </resources>

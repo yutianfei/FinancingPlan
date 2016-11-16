@@ -106,6 +106,9 @@ public class FunctionAssignModel extends BaseObservable {
      */
     public ObservableField<String> left = new ObservableField<>();
 
+    /**
+     * 设置数据库数据填充
+     */
     public void setData(FunctionAssignDBModel dbModel) {
         flag = dbModel.flag;
         month_income.set(dbModel.month_income);

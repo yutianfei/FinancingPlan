@@ -14,14 +14,29 @@
 
         <TextView
             style="@style/fa_instruction_content"
+            android:layout_marginTop="0dp"
             android:text="@string/map_instruction" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="@string/title_activity_cash_map"
-            android:src="@drawable/map_instruction" />
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/fa_instruction_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/map_example" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_rectangle_corner"
+                android:contentDescription="@string/title_activity_cash_map"
+                android:padding="4dp"
+                android:src="@drawable/map_instruction" />
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
