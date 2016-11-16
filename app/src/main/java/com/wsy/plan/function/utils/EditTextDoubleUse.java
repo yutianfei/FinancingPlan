@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.wsy.plan.R;
 import com.wsy.plan.common.MyEditorActionListener;
@@ -17,7 +18,7 @@ public class EditTextDoubleUse {
     private View rootView;
     private FunctionAssignModel model;
     private int flag;
-    private IFunctionModelPresenter presenter;
+    private IFunctionModelPresenter presenter = new LocalPresenter();
     private FunctionAssignDBModel dbModel;
     private FunctionAssignDBModel dbModelOriginal; // 用于比较数据是否发生变化
 
@@ -35,7 +36,7 @@ public class EditTextDoubleUse {
 
     private MyEditorActionListener myEditorActionListener = new MyEditorActionListener() {
         @Override
-        public void doSomething() {
+        public void doSomething(TextView textView) {
             compute();
         }
     };
@@ -48,7 +49,6 @@ public class EditTextDoubleUse {
         this.rootView = rootView;
         this.model = model;
         this.flag = flag;
-        presenter = new LocalPresenter();
     }
 
     public void initEditText() {

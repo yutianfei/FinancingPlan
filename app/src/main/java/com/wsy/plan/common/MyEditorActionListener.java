@@ -18,7 +18,7 @@ public abstract class MyEditorActionListener implements TextView.OnEditorActionL
                 imm.hideSoftInputFromWindow(textView.getApplicationWindowToken(), 0);
             }
             // 进行处理
-            doSomething();
+            doSomething(textView);
             return true;
         }
         return false;
@@ -27,5 +27,5 @@ public abstract class MyEditorActionListener implements TextView.OnEditorActionL
     /**
      * 当点击完成时进行的操作
      */
-    public abstract void doSomething();
+    public abstract void doSomething(TextView textView);
 }

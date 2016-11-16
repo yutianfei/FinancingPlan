@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.wsy.plan.BaseActivity;
 import com.wsy.plan.R;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class Challenge52Activity extends BaseActivity {
 
-    private IChallengeModelPresenter presenter;
+    private IChallengeModelPresenter presenter = new LocalPresenter();
     private List<ChallengeDBModel> dbList;
     private List<ChallengeModel> list = new ArrayList<>();
     private ChallengeListAdapter adapter;
@@ -40,7 +41,6 @@ public class Challenge52Activity extends BaseActivity {
         initRecyclerView();
 
         // 读取数据
-        presenter = new LocalPresenter();
         dbList = presenter.getModels();
         // 给作为比较的数据赋值
         perWeekOriginal = dbList.get(0).store;
@@ -61,7 +61,7 @@ public class Challenge52Activity extends BaseActivity {
         editPerWeek = (EditText) findViewById(R.id.edit_per_week);
         editPerWeek.setOnEditorActionListener(new MyEditorActionListener() {
             @Override
-            public void doSomething() {
+            public void doSomething(TextView textView) {
                 compute();
             }
         });

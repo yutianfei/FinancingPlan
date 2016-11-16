@@ -5,7 +5,8 @@ import org.litepal.crud.DataSupport;
 /**
  * 现金流分配地图数据模型
  */
-public class CashMapDBModel extends DataSupport {
+public class CashMapDBModel extends DataSupport implements Cloneable {
+    public int id;
     /**
      * 备用金少于几个月
      */
@@ -62,4 +63,81 @@ public class CashMapDBModel extends DataSupport {
      * 自定义分配5名称
      */
     public String custom_5_name;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        CashMapDBModel o = null;
+        try {
+            // Object中的clone()识别出你要复制的是哪一个对象
+            o = (CashMapDBModel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.toString());
+        }
+        return o;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CashMapDBModel that = (CashMapDBModel) o;
+
+        if (backup_less != null ? !backup_less.equals(that.backup_less) : that.backup_less != null)
+            return false;
+        if (backup_more != null ? !backup_more.equals(that.backup_more) : that.backup_more != null)
+            return false;
+        if (backup_percent != null ? !backup_percent.equals(that.backup_percent) : that.backup_percent != null)
+            return false;
+        if (necessary_percent != null ? !necessary_percent.equals(that.necessary_percent) : that.necessary_percent != null)
+            return false;
+        if (custom_1_percent != null ? !custom_1_percent.equals(that.custom_1_percent) : that.custom_1_percent != null)
+            return false;
+        if (custom_2_percent != null ? !custom_2_percent.equals(that.custom_2_percent) : that.custom_2_percent != null)
+            return false;
+        if (custom_3_percent != null ? !custom_3_percent.equals(that.custom_3_percent) : that.custom_3_percent != null)
+            return false;
+        if (custom_4_percent != null ? !custom_4_percent.equals(that.custom_4_percent) : that.custom_4_percent != null)
+            return false;
+        if (custom_5_percent != null ? !custom_5_percent.equals(that.custom_5_percent) : that.custom_5_percent != null)
+            return false;
+        if (custom_1_name != null ? !custom_1_name.equals(that.custom_1_name) : that.custom_1_name != null)
+            return false;
+        if (custom_2_name != null ? !custom_2_name.equals(that.custom_2_name) : that.custom_2_name != null)
+            return false;
+        if (custom_3_name != null ? !custom_3_name.equals(that.custom_3_name) : that.custom_3_name != null)
+            return false;
+        if (custom_4_name != null ? !custom_4_name.equals(that.custom_4_name) : that.custom_4_name != null)
+            return false;
+        return custom_5_name != null ? custom_5_name.equals(that.custom_5_name) : that.custom_5_name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = backup_less != null ? backup_less.hashCode() : 0;
+        result = 31 * result + (backup_more != null ? backup_more.hashCode() : 0);
+        result = 31 * result + (backup_percent != null ? backup_percent.hashCode() : 0);
+        result = 31 * result + (necessary_percent != null ? necessary_percent.hashCode() : 0);
+        result = 31 * result + (custom_1_percent != null ? custom_1_percent.hashCode() : 0);
+        result = 31 * result + (custom_2_percent != null ? custom_2_percent.hashCode() : 0);
+        result = 31 * result + (custom_3_percent != null ? custom_3_percent.hashCode() : 0);
+        result = 31 * result + (custom_4_percent != null ? custom_4_percent.hashCode() : 0);
+        result = 31 * result + (custom_5_percent != null ? custom_5_percent.hashCode() : 0);
+        result = 31 * result + (custom_1_name != null ? custom_1_name.hashCode() : 0);
+        result = 31 * result + (custom_2_name != null ? custom_2_name.hashCode() : 0);
+        result = 31 * result + (custom_3_name != null ? custom_3_name.hashCode() : 0);
+        result = 31 * result + (custom_4_name != null ? custom_4_name.hashCode() : 0);
+        result = 31 * result + (custom_5_name != null ? custom_5_name.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * 设置初始数据
+     */
+    public static CashMapDBModel initDBModel() {
+        CashMapDBModel dbModel = new CashMapDBModel();
+        dbModel.id = 1;
+        return dbModel;
+    }
 }
