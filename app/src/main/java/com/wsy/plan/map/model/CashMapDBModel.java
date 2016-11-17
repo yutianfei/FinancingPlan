@@ -10,59 +10,59 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
     /**
      * 备用金少于几个月
      */
-    public String backup_less;
+    String map_backup_less;
     /**
      * 备用金备足几个月
      */
-    public String backup_more;
+    String map_backup_more;
     /**
      * 存储备用金比例
      */
-    public String backup_percent;
+    String map_backup_percent;
     /**
      * 生活费比例
      */
-    public String expenses_percent;
+    String map_expenses_percent;
     /**
      * 自定义分配1比例
      */
-    public String custom_1_percent;
+    String map_custom_1_percent;
     /**
      * 自定义分配2比例
      */
-    public String custom_2_percent;
+    String map_custom_2_percent;
     /**
      * 自定义分配3比例
      */
-    public String custom_3_percent;
+    String map_custom_3_percent;
     /**
      * 自定义分配4比例
      */
-    public String custom_4_percent;
+    String map_custom_4_percent;
     /**
      * 自定义分配5比例
      */
-    public String custom_5_percent;
+    String map_custom_5_percent;
     /**
      * 自定义分配1名称
      */
-    public String custom_1_name;
+    String map_custom_1_name;
     /**
      * 自定义分配2名称
      */
-    public String custom_2_name;
+    String map_custom_2_name;
     /**
      * 自定义分配3名称
      */
-    public String custom_3_name;
+    String map_custom_3_name;
     /**
      * 自定义分配4名称
      */
-    public String custom_4_name;
+    String map_custom_4_name;
     /**
      * 自定义分配5名称
      */
-    public String custom_5_name;
+    String map_custom_5_name;
 
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -83,52 +83,52 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
 
         CashMapDBModel that = (CashMapDBModel) o;
 
-        if (backup_less != null ? !backup_less.equals(that.backup_less) : that.backup_less != null)
+        if (map_backup_less != null ? !map_backup_less.equals(that.map_backup_less) : that.map_backup_less != null)
             return false;
-        if (backup_more != null ? !backup_more.equals(that.backup_more) : that.backup_more != null)
+        if (map_backup_more != null ? !map_backup_more.equals(that.map_backup_more) : that.map_backup_more != null)
             return false;
-        if (backup_percent != null ? !backup_percent.equals(that.backup_percent) : that.backup_percent != null)
+        if (map_backup_percent != null ? !map_backup_percent.equals(that.map_backup_percent) : that.map_backup_percent != null)
             return false;
-        if (expenses_percent != null ? !expenses_percent.equals(that.expenses_percent) : that.expenses_percent != null)
+        if (map_expenses_percent != null ? !map_expenses_percent.equals(that.map_expenses_percent) : that.map_expenses_percent != null)
             return false;
-        if (custom_1_percent != null ? !custom_1_percent.equals(that.custom_1_percent) : that.custom_1_percent != null)
+        if (map_custom_1_percent != null ? !map_custom_1_percent.equals(that.map_custom_1_percent) : that.map_custom_1_percent != null)
             return false;
-        if (custom_2_percent != null ? !custom_2_percent.equals(that.custom_2_percent) : that.custom_2_percent != null)
+        if (map_custom_2_percent != null ? !map_custom_2_percent.equals(that.map_custom_2_percent) : that.map_custom_2_percent != null)
             return false;
-        if (custom_3_percent != null ? !custom_3_percent.equals(that.custom_3_percent) : that.custom_3_percent != null)
+        if (map_custom_3_percent != null ? !map_custom_3_percent.equals(that.map_custom_3_percent) : that.map_custom_3_percent != null)
             return false;
-        if (custom_4_percent != null ? !custom_4_percent.equals(that.custom_4_percent) : that.custom_4_percent != null)
+        if (map_custom_4_percent != null ? !map_custom_4_percent.equals(that.map_custom_4_percent) : that.map_custom_4_percent != null)
             return false;
-        if (custom_5_percent != null ? !custom_5_percent.equals(that.custom_5_percent) : that.custom_5_percent != null)
+        if (map_custom_5_percent != null ? !map_custom_5_percent.equals(that.map_custom_5_percent) : that.map_custom_5_percent != null)
             return false;
-        if (custom_1_name != null ? !custom_1_name.equals(that.custom_1_name) : that.custom_1_name != null)
+        if (map_custom_1_name != null ? !map_custom_1_name.equals(that.map_custom_1_name) : that.map_custom_1_name != null)
             return false;
-        if (custom_2_name != null ? !custom_2_name.equals(that.custom_2_name) : that.custom_2_name != null)
+        if (map_custom_2_name != null ? !map_custom_2_name.equals(that.map_custom_2_name) : that.map_custom_2_name != null)
             return false;
-        if (custom_3_name != null ? !custom_3_name.equals(that.custom_3_name) : that.custom_3_name != null)
+        if (map_custom_3_name != null ? !map_custom_3_name.equals(that.map_custom_3_name) : that.map_custom_3_name != null)
             return false;
-        if (custom_4_name != null ? !custom_4_name.equals(that.custom_4_name) : that.custom_4_name != null)
+        if (map_custom_4_name != null ? !map_custom_4_name.equals(that.map_custom_4_name) : that.map_custom_4_name != null)
             return false;
-        return custom_5_name != null ? custom_5_name.equals(that.custom_5_name) : that.custom_5_name == null;
+        return map_custom_5_name != null ? map_custom_5_name.equals(that.map_custom_5_name) : that.map_custom_5_name == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = backup_less != null ? backup_less.hashCode() : 0;
-        result = 31 * result + (backup_more != null ? backup_more.hashCode() : 0);
-        result = 31 * result + (backup_percent != null ? backup_percent.hashCode() : 0);
-        result = 31 * result + (expenses_percent != null ? expenses_percent.hashCode() : 0);
-        result = 31 * result + (custom_1_percent != null ? custom_1_percent.hashCode() : 0);
-        result = 31 * result + (custom_2_percent != null ? custom_2_percent.hashCode() : 0);
-        result = 31 * result + (custom_3_percent != null ? custom_3_percent.hashCode() : 0);
-        result = 31 * result + (custom_4_percent != null ? custom_4_percent.hashCode() : 0);
-        result = 31 * result + (custom_5_percent != null ? custom_5_percent.hashCode() : 0);
-        result = 31 * result + (custom_1_name != null ? custom_1_name.hashCode() : 0);
-        result = 31 * result + (custom_2_name != null ? custom_2_name.hashCode() : 0);
-        result = 31 * result + (custom_3_name != null ? custom_3_name.hashCode() : 0);
-        result = 31 * result + (custom_4_name != null ? custom_4_name.hashCode() : 0);
-        result = 31 * result + (custom_5_name != null ? custom_5_name.hashCode() : 0);
+        int result = map_backup_less != null ? map_backup_less.hashCode() : 0;
+        result = 31 * result + (map_backup_more != null ? map_backup_more.hashCode() : 0);
+        result = 31 * result + (map_backup_percent != null ? map_backup_percent.hashCode() : 0);
+        result = 31 * result + (map_expenses_percent != null ? map_expenses_percent.hashCode() : 0);
+        result = 31 * result + (map_custom_1_percent != null ? map_custom_1_percent.hashCode() : 0);
+        result = 31 * result + (map_custom_2_percent != null ? map_custom_2_percent.hashCode() : 0);
+        result = 31 * result + (map_custom_3_percent != null ? map_custom_3_percent.hashCode() : 0);
+        result = 31 * result + (map_custom_4_percent != null ? map_custom_4_percent.hashCode() : 0);
+        result = 31 * result + (map_custom_5_percent != null ? map_custom_5_percent.hashCode() : 0);
+        result = 31 * result + (map_custom_1_name != null ? map_custom_1_name.hashCode() : 0);
+        result = 31 * result + (map_custom_2_name != null ? map_custom_2_name.hashCode() : 0);
+        result = 31 * result + (map_custom_3_name != null ? map_custom_3_name.hashCode() : 0);
+        result = 31 * result + (map_custom_4_name != null ? map_custom_4_name.hashCode() : 0);
+        result = 31 * result + (map_custom_5_name != null ? map_custom_5_name.hashCode() : 0);
         return result;
     }
 
@@ -145,19 +145,19 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
      * 填充数据库数据
      */
     public void setData(CashMapModel model) {
-        backup_less = model.backup_less.get();
-        backup_more = model.backup_more.get();
-        backup_percent = model.backup_percent.get();
-        expenses_percent = model.expenses_percent.get();
-        custom_1_percent = model.custom_1_percent.get();
-        custom_2_percent = model.custom_2_percent.get();
-        custom_3_percent = model.custom_3_percent.get();
-        custom_4_percent = model.custom_4_percent.get();
-        custom_5_percent = model.custom_5_percent.get();
-        custom_1_name = model.custom_1_name.get();
-        custom_2_name = model.custom_2_name.get();
-        custom_3_name = model.custom_3_name.get();
-        custom_4_name = model.custom_4_name.get();
-        custom_5_name = model.custom_5_name.get();
+        map_backup_less = model.map_backup_less.get();
+        map_backup_more = model.map_backup_more.get();
+        map_backup_percent = model.map_backup_percent.get();
+        map_expenses_percent = model.map_expenses_percent.get();
+        map_custom_1_percent = model.map_custom_1_percent.get();
+        map_custom_2_percent = model.map_custom_2_percent.get();
+        map_custom_3_percent = model.map_custom_3_percent.get();
+        map_custom_4_percent = model.map_custom_4_percent.get();
+        map_custom_5_percent = model.map_custom_5_percent.get();
+        map_custom_1_name = model.map_custom_1_name.get();
+        map_custom_2_name = model.map_custom_2_name.get();
+        map_custom_3_name = model.map_custom_3_name.get();
+        map_custom_4_name = model.map_custom_4_name.get();
+        map_custom_5_name = model.map_custom_5_name.get();
     }
 }

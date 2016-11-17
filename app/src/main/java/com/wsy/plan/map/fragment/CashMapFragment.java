@@ -66,8 +66,6 @@ public class CashMapFragment extends Fragment {
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
-            // 更新数据显示
-            model.setData(dbModel);
         }
     }
 }

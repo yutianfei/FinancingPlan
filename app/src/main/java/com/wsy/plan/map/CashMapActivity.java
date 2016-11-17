@@ -2,6 +2,7 @@ package com.wsy.plan.map;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -44,6 +45,13 @@ public class CashMapActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 ((CashMapFragment) fragments.get(1)).update();
+                final Snackbar snackbar = Snackbar.make(view, "保存成功", Snackbar.LENGTH_LONG);
+                snackbar.setAction("完成", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                }).show();
             }
         });
         if (mViewPager.getCurrentItem() == 1) {

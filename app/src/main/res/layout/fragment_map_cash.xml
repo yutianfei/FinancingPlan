@@ -140,7 +140,7 @@
                     style="@style/map_input_number"
                     android:layout_width="20dp"
                     android:gravity="center"
-                    android:text="@={model.backup_less}" />
+                    android:text="@={model.map_backup_less}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -184,7 +184,7 @@
                     android:layout_width="24dp"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="@={model.backup_percent}" />
+                    android:text="@={model.map_backup_percent}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -225,7 +225,7 @@
                     android:layout_width="24dp"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="@={model.expenses_percent}" />
+                    android:text="@={model.map_expenses_percent}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -263,7 +263,7 @@
                     style="@style/map_input_number"
                     android:layout_width="20dp"
                     android:gravity="center"
-                    android:text="@={model.backup_more}" />
+                    android:text="@={model.map_backup_more}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -276,7 +276,7 @@
                 android:id="@+id/edit_name_1"
                 style="@style/map_input_text"
                 android:layout_below="@id/iv_arrow_down_4"
-                android:text="@={model.custom_1_name}" />
+                android:text="@={model.map_custom_1_name}" />
 
             <LinearLayout
                 android:id="@+id/layout_percent_name_1"
@@ -291,7 +291,7 @@
                     android:layout_width="24dp"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="@={model.custom_1_percent}" />
+                    android:text="@={model.map_custom_1_percent}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -312,7 +312,7 @@
                 android:id="@+id/edit_name_2"
                 style="@style/map_input_text"
                 android:layout_below="@id/iv_arrow_down_5"
-                android:text="@={model.custom_2_name}" />
+                android:text="@={model.map_custom_2_name}" />
 
             <LinearLayout
                 android:id="@+id/layout_percent_name_2"
@@ -327,7 +327,7 @@
                     android:layout_width="24dp"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="@={model.custom_2_percent}" />
+                    android:text="@={model.map_custom_2_percent}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -348,7 +348,7 @@
                 android:id="@+id/edit_name_3"
                 style="@style/map_input_text"
                 android:layout_below="@id/iv_arrow_down_6"
-                android:text="@={model.custom_3_name}" />
+                android:text="@={model.map_custom_3_name}" />
 
             <LinearLayout
                 android:id="@+id/layout_percent_name_3"
@@ -363,7 +363,7 @@
                     android:layout_width="24dp"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="@={model.custom_3_percent}" />
+                    android:text="@={model.map_custom_3_percent}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -384,7 +384,7 @@
                 android:id="@+id/edit_name_4"
                 style="@style/map_input_text"
                 android:layout_below="@id/iv_arrow_down_7"
-                android:text="@={model.custom_4_name}" />
+                android:text="@={model.map_custom_4_name}" />
 
             <LinearLayout
                 android:id="@+id/layout_percent_name_4"
@@ -399,7 +399,7 @@
                     android:layout_width="24dp"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="@={model.custom_4_percent}" />
+                    android:text="@={model.map_custom_4_percent}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
@@ -420,7 +420,7 @@
                 android:id="@+id/edit_name_5"
                 style="@style/map_input_text"
                 android:layout_below="@id/iv_arrow_down_8"
-                android:text="@={model.custom_5_name}" />
+                android:text="@={model.map_custom_5_name}" />
 
             <LinearLayout
                 android:id="@+id/layout_percent_name_5"
@@ -435,7 +435,7 @@
                     android:layout_width="24dp"
                     android:gravity="center"
                     android:padding="0dp"
-                    android:text="@={model.custom_5_percent}" />
+                    android:text="@={model.map_custom_5_percent}" />
 
                 <TextView
                     style="@style/map_no_bg_text"
