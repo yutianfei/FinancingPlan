@@ -38,7 +38,7 @@ public class PercentFragment extends Fragment {
         FragmentFaPercentBinding binding = DataBindingUtil.bind(rootView);
         binding.setModel(model);
 
-        EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FLAG_PERCENT).initEditText();
+        EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FA_FLAG_PERCENT).initEditText();
 
         return rootView;
     }

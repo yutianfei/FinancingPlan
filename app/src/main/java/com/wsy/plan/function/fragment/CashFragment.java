@@ -38,7 +38,7 @@ public class CashFragment extends Fragment {
         FragmentFaCashBinding binding = DataBindingUtil.bind(rootView);
         binding.setModel(model);
 
-        EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FLAG_CASH).initEditText();
+        EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FA_FLAG_CASH).initEditText();
 
         return rootView;
     }

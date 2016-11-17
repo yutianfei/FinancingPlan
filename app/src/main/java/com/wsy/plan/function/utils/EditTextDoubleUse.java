@@ -93,24 +93,24 @@ public class EditTextDoubleUse {
      */
     private void compute() {
         // 月收入
-        dbModel.month_income = editMonthIncome.getText().toString();
+        dbModel.fa_month_income = editMonthIncome.getText().toString();
         // 预扣税
-        dbModel.taxes = editTaxes.getText().toString();
+        dbModel.fa_taxes = editTaxes.getText().toString();
         // 税后收入
-        dbModel.after_taxes = BigDecimalUtils.sub(dbModel.month_income, dbModel.taxes);
+        dbModel.fa_after_taxes = BigDecimalUtils.sub(dbModel.fa_month_income, dbModel.fa_taxes);
         // 其他数据
         switch (flag) {
-            case FunctionAssignModel.FLAG_PERCENT:
+            case FunctionAssignModel.FA_FLAG_PERCENT:
                 setPercentData();
                 break;
-            case FunctionAssignModel.FLAG_CASH:
+            case FunctionAssignModel.FA_FLAG_CASH:
                 setCashData();
                 break;
         }
         // 剩余可支配金额
-        String[] values = {dbModel.finance, dbModel.grow, dbModel.play, dbModel.long_plan,
-                dbModel.prepare_1, dbModel.prepare_2, dbModel.prepare_3, dbModel.necessary};
-        dbModel.left = BigDecimalUtils.sub(dbModel.after_taxes, BigDecimalUtils.add(values));
+        String[] values = {dbModel.fa_finance, dbModel.fa_grow, dbModel.fa_play, dbModel.fa_long_plan,
+                dbModel.fa_prepare_1, dbModel.fa_prepare_2, dbModel.fa_prepare_3, dbModel.fa_necessary};
+        dbModel.fa_left = BigDecimalUtils.sub(dbModel.fa_after_taxes, BigDecimalUtils.add(values));
         // 如果有变化，则更新并保存新数据
         if (!dbModelOriginal.equals(dbModel)) {
             // 保存修改的数据
@@ -133,45 +133,45 @@ public class EditTextDoubleUse {
         // 设置数据
         model.setData(dbModel);
         // 设置字体颜色
-        editLeft.setTextColor(dbModel.left.contains("-") ? Color.RED : Color.parseColor("#333333"));
+        editLeft.setTextColor(dbModel.fa_left.contains("-") ? Color.RED : Color.parseColor("#333333"));
     }
 
     private void setCashData() {
-        dbModel.finance = editFinance.getText().toString();
-        dbModel.finance_percent = BigDecimalUtils.divide(dbModel.finance, dbModel.after_taxes);
-        dbModel.grow = editGrow.getText().toString();
-        dbModel.grow_percent = BigDecimalUtils.divide(dbModel.grow, dbModel.after_taxes);
-        dbModel.play = editPlay.getText().toString();
-        dbModel.play_percent = BigDecimalUtils.divide(dbModel.play, dbModel.after_taxes);
-        dbModel.long_plan = editLongPlan.getText().toString();
-        dbModel.long_plan_percent = BigDecimalUtils.divide(dbModel.long_plan, dbModel.after_taxes);
-        dbModel.prepare_1 = editPrepare1.getText().toString();
-        dbModel.prepare_1_percent = BigDecimalUtils.divide(dbModel.prepare_1, dbModel.after_taxes);
-        dbModel.prepare_2 = editPrepare2.getText().toString();
-        dbModel.prepare_2_percent = BigDecimalUtils.divide(dbModel.prepare_2, dbModel.after_taxes);
-        dbModel.prepare_3 = editPrepare3.getText().toString();
-        dbModel.prepare_3_percent = BigDecimalUtils.divide(dbModel.prepare_3, dbModel.after_taxes);
-        dbModel.necessary = editNecessary.getText().toString();
-        dbModel.necessary_percent = BigDecimalUtils.divide(dbModel.necessary, dbModel.after_taxes);
+        dbModel.fa_finance = editFinance.getText().toString();
+        dbModel.fa_finance_percent = BigDecimalUtils.divide(dbModel.fa_finance, dbModel.fa_after_taxes);
+        dbModel.fa_grow = editGrow.getText().toString();
+        dbModel.fa_grow_percent = BigDecimalUtils.divide(dbModel.fa_grow, dbModel.fa_after_taxes);
+        dbModel.fa_play = editPlay.getText().toString();
+        dbModel.fa_play_percent = BigDecimalUtils.divide(dbModel.fa_play, dbModel.fa_after_taxes);
+        dbModel.fa_long_plan = editLongPlan.getText().toString();
+        dbModel.fa_long_plan_percent = BigDecimalUtils.divide(dbModel.fa_long_plan, dbModel.fa_after_taxes);
+        dbModel.fa_prepare_1 = editPrepare1.getText().toString();
+        dbModel.fa_prepare_1_percent = BigDecimalUtils.divide(dbModel.fa_prepare_1, dbModel.fa_after_taxes);
+        dbModel.fa_prepare_2 = editPrepare2.getText().toString();
+        dbModel.fa_prepare_2_percent = BigDecimalUtils.divide(dbModel.fa_prepare_2, dbModel.fa_after_taxes);
+        dbModel.fa_prepare_3 = editPrepare3.getText().toString();
+        dbModel.fa_prepare_3_percent = BigDecimalUtils.divide(dbModel.fa_prepare_3, dbModel.fa_after_taxes);
+        dbModel.fa_necessary = editNecessary.getText().toString();
+        dbModel.fa_necessary_percent = BigDecimalUtils.divide(dbModel.fa_necessary, dbModel.fa_after_taxes);
     }
 
     private void setPercentData() {
-        dbModel.finance_percent = formatString(editFinance.getText().toString());
-        dbModel.finance = BigDecimalUtils.multiply(dbModel.finance_percent, dbModel.after_taxes);
-        dbModel.grow_percent = formatString(editGrow.getText().toString());
-        dbModel.grow = BigDecimalUtils.multiply(dbModel.grow_percent, dbModel.after_taxes);
-        dbModel.play_percent = formatString(editPlay.getText().toString());
-        dbModel.play = BigDecimalUtils.multiply(dbModel.play_percent, dbModel.after_taxes);
-        dbModel.long_plan_percent = formatString(editLongPlan.getText().toString());
-        dbModel.long_plan = BigDecimalUtils.multiply(dbModel.long_plan_percent, dbModel.after_taxes);
-        dbModel.prepare_1_percent = formatString(editPrepare1.getText().toString());
-        dbModel.prepare_1 = BigDecimalUtils.multiply(dbModel.prepare_1_percent, dbModel.after_taxes);
-        dbModel.prepare_2_percent = formatString(editPrepare2.getText().toString());
-        dbModel.prepare_2 = BigDecimalUtils.multiply(dbModel.prepare_2_percent, dbModel.after_taxes);
-        dbModel.prepare_3_percent = formatString(editPrepare3.getText().toString());
-        dbModel.prepare_3 = BigDecimalUtils.multiply(dbModel.prepare_3_percent, dbModel.after_taxes);
-        dbModel.necessary_percent = formatString(editNecessary.getText().toString());
-        dbModel.necessary = BigDecimalUtils.multiply(dbModel.necessary_percent, dbModel.after_taxes);
+        dbModel.fa_finance_percent = formatString(editFinance.getText().toString());
+        dbModel.fa_finance = BigDecimalUtils.multiply(dbModel.fa_finance_percent, dbModel.fa_after_taxes);
+        dbModel.fa_grow_percent = formatString(editGrow.getText().toString());
+        dbModel.fa_grow = BigDecimalUtils.multiply(dbModel.fa_grow_percent, dbModel.fa_after_taxes);
+        dbModel.fa_play_percent = formatString(editPlay.getText().toString());
+        dbModel.fa_play = BigDecimalUtils.multiply(dbModel.fa_play_percent, dbModel.fa_after_taxes);
+        dbModel.fa_long_plan_percent = formatString(editLongPlan.getText().toString());
+        dbModel.fa_long_plan = BigDecimalUtils.multiply(dbModel.fa_long_plan_percent, dbModel.fa_after_taxes);
+        dbModel.fa_prepare_1_percent = formatString(editPrepare1.getText().toString());
+        dbModel.fa_prepare_1 = BigDecimalUtils.multiply(dbModel.fa_prepare_1_percent, dbModel.fa_after_taxes);
+        dbModel.fa_prepare_2_percent = formatString(editPrepare2.getText().toString());
+        dbModel.fa_prepare_2 = BigDecimalUtils.multiply(dbModel.fa_prepare_2_percent, dbModel.fa_after_taxes);
+        dbModel.fa_prepare_3_percent = formatString(editPrepare3.getText().toString());
+        dbModel.fa_prepare_3 = BigDecimalUtils.multiply(dbModel.fa_prepare_3_percent, dbModel.fa_after_taxes);
+        dbModel.fa_necessary_percent = formatString(editNecessary.getText().toString());
+        dbModel.fa_necessary = BigDecimalUtils.multiply(dbModel.fa_necessary_percent, dbModel.fa_after_taxes);
     }
 
     private String formatString(String str) {
