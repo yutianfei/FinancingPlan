@@ -13,7 +13,7 @@ import com.wsy.plan.R;
 import com.wsy.plan.common.SectionsPagerAdapter;
 import com.wsy.plan.map.fragment.CashMapFragment;
 import com.wsy.plan.map.fragment.InstructionFragment;
-import com.wsy.plan.map.model.CashMapDBModel;
+import com.wsy.plan.map.model.CashMapModel;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,15 +53,15 @@ public class CashMapActivity extends BaseActivity {
                         snackbar.dismiss();
                     }
                 });
-                switch (result){
-                    case CashMapDBModel.MAP_PERCENT_PERFECT:
+                switch (result) {
+                    case CashMapModel.MAP_PERCENT_PERFECT:
                         snackbar.setText("保存成功！").show();
                         break;
-                    case CashMapDBModel.MAP_PERCENT_LESS:
-                        snackbar.setText("还没有完成100%分配哦！").show();
+                    case CashMapModel.MAP_PERCENT_LESS:
+                        snackbar.setText("未保存，还没有完成100%分配哦！").show();
                         break;
-                    case CashMapDBModel.MAP_PERCENT_MORE:
-                        snackbar.setText("分配比例超过了100% ！").show();
+                    case CashMapModel.MAP_PERCENT_MORE:
+                        snackbar.setText("未保存，分配比例超过了100% ！").show();
                         break;
                     default:
                         break;

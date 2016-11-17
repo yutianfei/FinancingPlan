@@ -54,17 +54,17 @@ public class CashMapFragment extends Fragment {
     }
 
     public int update() {
-        // 进行赋值
-        dbModel.setData(model);
-        // 如果有变化，则更新并保存新数据
-        if (!dbModelOriginal.equals(dbModel)) {
-            if (dbModel.result() < 100) {
-                return CashMapDBModel.MAP_PERCENT_LESS;
+        if (model.result() < 100) {
+            return CashMapModel.MAP_PERCENT_LESS;
 
-            } else if (dbModel.result() > 100) {
-                return CashMapDBModel.MAP_PERCENT_MORE;
+        } else if (model.result() > 100) {
+            return CashMapModel.MAP_PERCENT_MORE;
 
-            } else if (dbModel.result() == 100) { // 完全分配，保存数据
+        } else { // 完全分配
+            // 进行赋值
+            dbModel.setData(model);
+            // 如果有变化，则更新并保存新数据
+            if (!dbModelOriginal.equals(dbModel)) {
                 // 保存修改的数据
                 presenter.updateDBModel(dbModel);
                 // 重新给作为比较的数据赋值
@@ -73,9 +73,9 @@ public class CashMapFragment extends Fragment {
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
-                return CashMapDBModel.MAP_PERCENT_PERFECT;
+                return CashMapModel.MAP_PERCENT_PERFECT;
             }
+            return CashMapModel.MAP_PERCENT_NOT_CHANGE;
         }
-        return CashMapDBModel.MAP_PERCENT_NOT_CHANGE;
     }
 }

@@ -1,19 +1,11 @@
 package com.wsy.plan.map.model;
 
-import com.wsy.plan.common.BigDecimalUtils;
-
 import org.litepal.crud.DataSupport;
 
 /**
  * 现金流分配地图数据模型
  */
 public class CashMapDBModel extends DataSupport implements Cloneable {
-
-    public static final int MAP_PERCENT_NOT_CHANGE = -1;
-    public static final int MAP_PERCENT_PERFECT = 0;
-    public static final int MAP_PERCENT_LESS = 1;
-    public static final int MAP_PERCENT_MORE = 2;
-
     private int map_id;
     /**
      * 备用金少于几个月
@@ -167,14 +159,5 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
         map_custom_3_name = model.map_custom_3_name.get();
         map_custom_4_name = model.map_custom_4_name.get();
         map_custom_5_name = model.map_custom_5_name.get();
-    }
-
-    /**
-     * 获取所有分配的百分比之和
-     */
-    public int result() {
-        String[] values = {map_backup_percent, map_expenses_percent, map_custom_1_percent,
-                map_custom_2_percent, map_custom_3_percent, map_custom_4_percent, map_custom_5_percent};
-        return Integer.parseInt(BigDecimalUtils.add(values));
     }
 }

@@ -3,10 +3,18 @@ package com.wsy.plan.map.model;
 import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 
+import com.wsy.plan.common.BigDecimalUtils;
+
 /**
  * 现金流分配地图数据模型
  */
 public class CashMapModel extends BaseObservable {
+
+    public static final int MAP_PERCENT_NOT_CHANGE = -1;
+    public static final int MAP_PERCENT_PERFECT = 0;
+    public static final int MAP_PERCENT_LESS = 1;
+    public static final int MAP_PERCENT_MORE = 2;
+
     /**
      * 备用金少于几个月
      */
@@ -84,4 +92,13 @@ public class CashMapModel extends BaseObservable {
         map_custom_5_name.set(dbModel.map_custom_5_name);
     }
 
+    /**
+     * 获取所有分配的百分比之和
+     */
+    public int result() {
+        String[] values = {map_backup_percent.get(), map_expenses_percent.get(), map_custom_1_percent.get(),
+                map_custom_2_percent.get(), map_custom_3_percent.get(), map_custom_4_percent.get(),
+                map_custom_5_percent.get()};
+        return Integer.parseInt(BigDecimalUtils.add(values));
+    }
 }
