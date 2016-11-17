@@ -48,6 +48,7 @@
                         <EditText
                             android:id="@+id/fa_month_income"
                             style="@style/fa_edit_label"
+                            android:enabled="false"
                             android:text="@string/fa_month_income" />
 
                         <EditText
@@ -94,6 +95,7 @@
                             <EditText
                                 android:id="@+id/fa_taxes"
                                 style="@style/fa_edit_label"
+                                android:enabled="false"
                                 android:text="@string/fa_taxes" />
 
                             <EditText
@@ -117,6 +119,7 @@
                             <EditText
                                 android:id="@+id/fa_after_taxes"
                                 style="@style/fa_edit_label"
+                                android:enabled="false"
                                 android:text="@string/fa_after_taxes" />
 
                             <EditText
@@ -166,7 +169,7 @@
                             <EditText
                                 android:id="@+id/fa_finance"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_finance" />
+                                android:text="@={model.fa_finance_name}" />
 
                             <EditText
                                 android:id="@+id/fa_finance_input"
@@ -190,7 +193,7 @@
                             <EditText
                                 android:id="@+id/fa_grow"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_grow" />
+                                android:text="@={model.fa_grow_name}" />
 
                             <EditText
                                 android:id="@+id/fa_grow_input"
@@ -214,7 +217,7 @@
                             <EditText
                                 android:id="@+id/fa_play"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_play" />
+                                android:text="@={model.fa_play_name}" />
 
                             <EditText
                                 android:id="@+id/fa_play_input"
@@ -238,7 +241,7 @@
                             <EditText
                                 android:id="@+id/fa_long_plan"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_long_plan" />
+                                android:text="@={model.fa_long_plan_name}" />
 
                             <EditText
                                 android:id="@+id/fa_long_plan_input"
@@ -262,7 +265,7 @@
                             <EditText
                                 android:id="@+id/fa_prepare_1"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_prepare_1" />
+                                android:text="@={model.fa_prepare_1_name}" />
 
                             <EditText
                                 android:id="@+id/fa_prepare_1_input"
@@ -286,7 +289,7 @@
                             <EditText
                                 android:id="@+id/fa_prepare_2"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_prepare_2" />
+                                android:text="@={model.fa_prepare_2_name}" />
 
                             <EditText
                                 android:id="@+id/fa_prepare_2_input"
@@ -310,7 +313,7 @@
                             <EditText
                                 android:id="@+id/fa_prepare_3"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_prepare_3" />
+                                android:text="@={model.fa_prepare_3_name}" />
 
                             <EditText
                                 android:id="@+id/fa_prepare_3_input"
@@ -359,7 +362,7 @@
                             <EditText
                                 android:id="@+id/fa_necessary"
                                 style="@style/fa_edit_label"
-                                android:text="@string/fa_necessary" />
+                                android:text="@={model.fa_necessary_name}" />
 
                             <EditText
                                 android:id="@+id/fa_necessary_input"
@@ -383,6 +386,7 @@
                             <EditText
                                 android:id="@+id/fa_left"
                                 style="@style/fa_edit_label"
+                                android:enabled="false"
                                 android:text="@string/fa_left" />
 
                             <EditText

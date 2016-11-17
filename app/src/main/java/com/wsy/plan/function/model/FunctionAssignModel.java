@@ -37,6 +37,10 @@ public class FunctionAssignModel extends BaseObservable {
      */
     public ObservableField<String> fa_after_taxes_percent = new ObservableField<>();
     /**
+     * 投资理财账户名称
+     */
+    public ObservableField<String> fa_finance_name = new ObservableField<>();
+    /**
      * 投资理财账户
      */
     public ObservableField<String> fa_finance = new ObservableField<>();
@@ -44,6 +48,10 @@ public class FunctionAssignModel extends BaseObservable {
      * 投资理财账户百分比
      */
     public ObservableField<String> fa_finance_percent = new ObservableField<>();
+    /**
+     * 自我成长账户名称
+     */
+    public ObservableField<String> fa_grow_name = new ObservableField<>();
     /**
      * 自我成长账户
      */
@@ -53,6 +61,10 @@ public class FunctionAssignModel extends BaseObservable {
      */
     public ObservableField<String> fa_grow_percent = new ObservableField<>();
     /**
+     * 尽情娱乐账户名称
+     */
+    public ObservableField<String> fa_play_name = new ObservableField<>();
+    /**
      * 尽情娱乐账户
      */
     public ObservableField<String> fa_play = new ObservableField<>();
@@ -60,6 +72,10 @@ public class FunctionAssignModel extends BaseObservable {
      * 尽情娱乐账户百分比
      */
     public ObservableField<String> fa_play_percent = new ObservableField<>();
+    /**
+     * 长期计划账户名称
+     */
+    public ObservableField<String> fa_long_plan_name = new ObservableField<>();
     /**
      * 长期计划账户
      */
@@ -69,6 +85,10 @@ public class FunctionAssignModel extends BaseObservable {
      */
     public ObservableField<String> fa_long_plan_percent = new ObservableField<>();
     /**
+     * 预备账户1名称
+     */
+    public ObservableField<String> fa_prepare_1_name = new ObservableField<>();
+    /**
      * 预备账户1
      */
     public ObservableField<String> fa_prepare_1 = new ObservableField<>();
@@ -76,6 +96,10 @@ public class FunctionAssignModel extends BaseObservable {
      * 预备账户1百分比
      */
     public ObservableField<String> fa_prepare_1_percent = new ObservableField<>();
+    /**
+     * 预备账户2名称
+     */
+    public ObservableField<String> fa_prepare_2_name = new ObservableField<>();
     /**
      * 预备账户2
      */
@@ -85,6 +109,10 @@ public class FunctionAssignModel extends BaseObservable {
      */
     public ObservableField<String> fa_prepare_2_percent = new ObservableField<>();
     /**
+     * 预备账户3名称
+     */
+    public ObservableField<String> fa_prepare_3_name = new ObservableField<>();
+    /**
      * 预备账户3
      */
     public ObservableField<String> fa_prepare_3 = new ObservableField<>();
@@ -92,6 +120,10 @@ public class FunctionAssignModel extends BaseObservable {
      * 预备账户3百分比
      */
     public ObservableField<String> fa_prepare_3_percent = new ObservableField<>();
+    /**
+     * 生活必需支出名称
+     */
+    public ObservableField<String> fa_necessary_name = new ObservableField<>();
     /**
      * 生活必需支出
      */
@@ -114,20 +146,28 @@ public class FunctionAssignModel extends BaseObservable {
         fa_taxes.set(dbModel.fa_taxes);
         fa_after_taxes.set(dbModel.fa_after_taxes);
         fa_after_taxes_percent.set(dbModel.fa_after_taxes_percent);
+        fa_finance_name.set(dbModel.fa_finance_name);
         fa_finance.set(dbModel.fa_finance);
         fa_finance_percent.set(dbModel.fa_finance_percent);
+        fa_grow_name.set(dbModel.fa_grow_name);
         fa_grow.set(dbModel.fa_grow);
         fa_grow_percent.set(dbModel.fa_grow_percent);
+        fa_play_name.set(dbModel.fa_play_name);
         fa_play.set(dbModel.fa_play);
         fa_play_percent.set(dbModel.fa_play_percent);
+        fa_long_plan_name.set(dbModel.fa_long_plan_name);
         fa_long_plan.set(dbModel.fa_long_plan);
         fa_long_plan_percent.set(dbModel.fa_long_plan_percent);
+        fa_prepare_1_name.set(dbModel.fa_prepare_1_name);
         fa_prepare_1.set(dbModel.fa_prepare_1);
         fa_prepare_1_percent.set(dbModel.fa_prepare_1_percent);
+        fa_prepare_2_name.set(dbModel.fa_prepare_2_name);
         fa_prepare_2.set(dbModel.fa_prepare_2);
         fa_prepare_2_percent.set(dbModel.fa_prepare_2_percent);
+        fa_prepare_3_name.set(dbModel.fa_prepare_3_name);
         fa_prepare_3.set(dbModel.fa_prepare_3);
         fa_prepare_3_percent.set(dbModel.fa_prepare_3_percent);
+        fa_necessary_name.set(dbModel.fa_necessary_name);
         fa_necessary.set(dbModel.fa_necessary);
         fa_necessary_percent.set(dbModel.fa_necessary_percent);
         fa_left.set(dbModel.fa_left);
