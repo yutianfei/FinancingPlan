@@ -22,7 +22,7 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
     /**
      * 生活费比例
      */
-    public String necessary_percent;
+    public String expenses_percent;
     /**
      * 自定义分配1比例
      */
@@ -89,7 +89,7 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
             return false;
         if (backup_percent != null ? !backup_percent.equals(that.backup_percent) : that.backup_percent != null)
             return false;
-        if (necessary_percent != null ? !necessary_percent.equals(that.necessary_percent) : that.necessary_percent != null)
+        if (expenses_percent != null ? !expenses_percent.equals(that.expenses_percent) : that.expenses_percent != null)
             return false;
         if (custom_1_percent != null ? !custom_1_percent.equals(that.custom_1_percent) : that.custom_1_percent != null)
             return false;
@@ -118,7 +118,7 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
         int result = backup_less != null ? backup_less.hashCode() : 0;
         result = 31 * result + (backup_more != null ? backup_more.hashCode() : 0);
         result = 31 * result + (backup_percent != null ? backup_percent.hashCode() : 0);
-        result = 31 * result + (necessary_percent != null ? necessary_percent.hashCode() : 0);
+        result = 31 * result + (expenses_percent != null ? expenses_percent.hashCode() : 0);
         result = 31 * result + (custom_1_percent != null ? custom_1_percent.hashCode() : 0);
         result = 31 * result + (custom_2_percent != null ? custom_2_percent.hashCode() : 0);
         result = 31 * result + (custom_3_percent != null ? custom_3_percent.hashCode() : 0);
@@ -139,5 +139,25 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
         CashMapDBModel dbModel = new CashMapDBModel();
         dbModel.id = 1;
         return dbModel;
+    }
+
+    /**
+     * 填充数据库数据
+     */
+    public void setData(CashMapModel model) {
+        backup_less = model.backup_less.get();
+        backup_more = model.backup_more.get();
+        backup_percent = model.backup_percent.get();
+        expenses_percent = model.expenses_percent.get();
+        custom_1_percent = model.custom_1_percent.get();
+        custom_2_percent = model.custom_2_percent.get();
+        custom_3_percent = model.custom_3_percent.get();
+        custom_4_percent = model.custom_4_percent.get();
+        custom_5_percent = model.custom_5_percent.get();
+        custom_1_name = model.custom_1_name.get();
+        custom_2_name = model.custom_2_name.get();
+        custom_3_name = model.custom_3_name.get();
+        custom_4_name = model.custom_4_name.get();
+        custom_5_name = model.custom_5_name.get();
     }
 }

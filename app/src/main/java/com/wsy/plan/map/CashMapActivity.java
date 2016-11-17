@@ -1,9 +1,11 @@
 package com.wsy.plan.map;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.wsy.plan.BaseActivity;
 import com.wsy.plan.R;
@@ -24,7 +26,7 @@ public class CashMapActivity extends BaseActivity {
         initToolbar();
 
         String[] titles = getResources().getStringArray(R.array.map_tab_title);
-        List<Fragment> fragments = new LinkedList<>();
+        final List<Fragment> fragments = new LinkedList<>();
         fragments.add(InstructionFragment.newInstance());
         fragments.add(CashMapFragment.newInstance());
 
@@ -36,5 +38,18 @@ public class CashMapActivity extends BaseActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((CashMapFragment) fragments.get(1)).update();
+            }
+        });
+        if (mViewPager.getCurrentItem() == 1) {
+            fab.setVisibility(View.VISIBLE);
+        } else {
+            fab.setVisibility(View.INVISIBLE);
+        }
     }
 }

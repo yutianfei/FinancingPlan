@@ -22,7 +22,7 @@ public class CashMapModel extends BaseObservable {
     /**
      * 生活费比例
      */
-    public ObservableField<String> necessary_percent = new ObservableField<>();
+    public ObservableField<String> expenses_percent = new ObservableField<>();
     /**
      * 自定义分配1比例
      */
@@ -71,7 +71,7 @@ public class CashMapModel extends BaseObservable {
         backup_less.set(dbModel.backup_less);
         backup_more.set(dbModel.backup_more);
         backup_percent.set(dbModel.backup_percent);
-        necessary_percent.set(dbModel.necessary_percent);
+        expenses_percent.set(dbModel.expenses_percent);
         custom_1_percent.set(dbModel.custom_1_percent);
         custom_2_percent.set(dbModel.custom_2_percent);
         custom_3_percent.set(dbModel.custom_3_percent);
