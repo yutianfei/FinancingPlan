@@ -1,4 +1,6 @@
-package com.wsy.plan.function.utils;
+package com.wsy.plan.common;
+
+import android.text.TextUtils;
 
 import java.math.BigDecimal;
 
@@ -24,6 +26,9 @@ public class BigDecimalUtils {
     public static String add(String[] values) {
         BigDecimal bigDecimal = new BigDecimal("0");
         for (String value : values) {
+            if (TextUtils.isEmpty(value)) {
+                value = "0";
+            }
             bigDecimal = bigDecimal.add(new BigDecimal(value));
         }
         return bigDecimal.toString();
@@ -48,14 +53,21 @@ public class BigDecimalUtils {
      * @return 两个参数的积
      */
     public static String multiply(String value1, String value2) {
+        String v1 = value1;
+        String v2 = value2;
+        BigDecimal result;
         if (value1.contains("%")) {
-            value1 = value1.substring(0, value1.indexOf("%"));
+            v1 = value1.substring(0, value1.indexOf("%"));
         }
         if (value2.contains("%")) {
-            value2 = value2.substring(0, value2.indexOf("%"));
+            v2 = value2.substring(0, value2.indexOf("%"));
         }
-        BigDecimal result = new BigDecimal(value1).multiply(new BigDecimal(value2))
-                .divide(new BigDecimal("100"), BigDecimal.ROUND_HALF_UP);
+        if (value1.contains("%") || value2.contains("%")) {
+            result = new BigDecimal(v1).multiply(new BigDecimal(v2))
+                    .divide(new BigDecimal("100"), BigDecimal.ROUND_HALF_UP);
+        } else {
+            result = new BigDecimal(v1).multiply(new BigDecimal(v2));
+        }
         return String.valueOf(result);
     }
 
