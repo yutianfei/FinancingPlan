@@ -6,7 +6,7 @@ import org.litepal.crud.DataSupport;
  * 现金流分配地图数据模型
  */
 public class CashMapDBModel extends DataSupport implements Cloneable {
-    public int id;
+    private int map_id;
     /**
      * 备用金少于几个月
      */
@@ -137,7 +137,7 @@ public class CashMapDBModel extends DataSupport implements Cloneable {
      */
     public static CashMapDBModel initDBModel() {
         CashMapDBModel dbModel = new CashMapDBModel();
-        dbModel.id = 1;
+        dbModel.map_id = 1;
         return dbModel;
     }
 

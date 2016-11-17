@@ -43,7 +43,7 @@ public class Challenge52Activity extends BaseActivity {
         // 读取数据
         dbList = presenter.getModels();
         // 给作为比较的数据赋值
-        perWeekOriginal = dbList.get(0).store;
+        perWeekOriginal = dbList.get(0).challenge_store;
         editPerWeek.setText(perWeekOriginal);
         // 设置显示数据
         updateShowList();
@@ -77,13 +77,13 @@ public class Challenge52Activity extends BaseActivity {
             for (int i = 1; i <= 52; i++) {
                 // 保存数据库数据
                 ChallengeDBModel dbModel = dbList.get(i - 1);
-                dbModel.store = String.valueOf(Integer.parseInt(text) * i);
-                dbModel.total = String.valueOf(((Integer.parseInt(text) + Integer.parseInt(text) * i) * i) / 2);
+                dbModel.challenge_store = String.valueOf(Integer.parseInt(text) * i);
+                dbModel.challenge_total = String.valueOf(((Integer.parseInt(text) + Integer.parseInt(text) * i) * i) / 2);
                 presenter.updateDBModel(dbModel);
                 // 更新显示数据
                 ChallengeModel model = list.get(i - 1);
-                model.store.set(dbModel.store);
-                model.total.set(dbModel.total);
+                model.challenge_store.set(dbModel.challenge_store);
+                model.challenge_total.set(dbModel.challenge_total);
             }
             perWeekOriginal = text;
         }
@@ -93,10 +93,10 @@ public class Challenge52Activity extends BaseActivity {
         list.clear();
         for (ChallengeDBModel dbModel : dbList) {
             ChallengeModel model = new ChallengeModel();
-            model.flag.set(dbModel.flag);
-            model.id.set(dbModel.id);
-            model.store.set(dbModel.store);
-            model.total.set(dbModel.total);
+            model.challenge_flag.set(dbModel.challenge_flag);
+            model.challenge_id.set(dbModel.challenge_id);
+            model.challenge_store.set(dbModel.challenge_store);
+            model.challenge_total.set(dbModel.challenge_total);
             list.add(model);
         }
         adapter.notifyDataSetChanged();
@@ -115,8 +115,8 @@ public class Challenge52Activity extends BaseActivity {
             }
         });
 
-        int id = item.id.get();
-        int flag = item.flag.get();
+        int id = item.challenge_id.get();
+        int flag = item.challenge_flag.get();
         // 重新设置标志
         if (flag == 0) {
             flag = 1;
@@ -129,10 +129,10 @@ public class Challenge52Activity extends BaseActivity {
         }
         // 更新数据库：完成情况
         ChallengeDBModel dbModel = dbList.get(id - 1);
-        dbModel.flag = flag;
+        dbModel.challenge_flag = flag;
         presenter.updateDBModel(dbModel);
         // 更新显示
         ChallengeModel model = list.get(id - 1);
-        model.flag.set(flag);
+        model.challenge_flag.set(flag);
     }
 }

@@ -21,10 +21,10 @@ public class LocalPresenter implements IChallengeModelPresenter {
             list = new ArrayList<>();
             for (int i = 1; i <= 52; i++) {
                 ChallengeDBModel model = new ChallengeDBModel();
-                model.flag = 0;
-                model.id = i;
-                model.store = String.valueOf(originalPerWeek * i);
-                model.total = String.valueOf(((originalPerWeek + originalPerWeek * i) * i) / 2);
+                model.challenge_flag = 0;
+                model.challenge_id = i;
+                model.challenge_store = String.valueOf(originalPerWeek * i);
+                model.challenge_total = String.valueOf(((originalPerWeek + originalPerWeek * i) * i) / 2);
                 model.save();
                 list.add(model);
             }

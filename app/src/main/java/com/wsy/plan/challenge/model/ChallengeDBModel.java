@@ -7,19 +7,19 @@ import org.litepal.crud.DataSupport;
  */
 public class ChallengeDBModel extends DataSupport {
     /**
-     * 标志：是否完成（未完成：0；已完成：1）
-     */
-    public int flag;
-    /**
      * 序号
      */
-    public int id;
+    public int challenge_id;
+    /**
+     * 标志：是否完成（未完成：0；已完成：1）
+     */
+    public int challenge_flag;
     /**
      * 存入金额
      */
-    public String store;
+    public String challenge_store;
     /**
      * 累计金额
      */
-    public String total;
+    public String challenge_total;
 }
