@@ -10,10 +10,10 @@ import android.view.View;
 
 import com.wsy.plan.BaseActivity;
 import com.wsy.plan.R;
+import com.wsy.plan.common.Constants;
 import com.wsy.plan.common.SectionsPagerAdapter;
 import com.wsy.plan.map.fragment.CashMapFragment;
 import com.wsy.plan.map.fragment.InstructionFragment;
-import com.wsy.plan.map.model.CashMapModel;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,37 +41,51 @@ public class CashMapActivity extends BaseActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int result = ((CashMapFragment) fragments.get(1)).update();
                 final Snackbar snackbar = Snackbar.make(view, "", Snackbar.LENGTH_LONG);
-                snackbar.setAction("完成", new View.OnClickListener() {
+                snackbar.setAction(R.string.snackbar_action_complete, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         snackbar.dismiss();
                     }
                 });
                 switch (result) {
-                    case CashMapModel.MAP_PERCENT_PERFECT:
-                        snackbar.setText("保存成功！").show();
+                    case Constants.RESULT_PERFECT:
+                        snackbar.setText(R.string.snackbar_save_ok).show();
                         break;
-                    case CashMapModel.MAP_PERCENT_LESS:
-                        snackbar.setText("未保存，还没有完成100%分配哦！").show();
+                    case Constants.RESULT_LESS:
+                        snackbar.setText(R.string.snackbar_failed_less).show();
                         break;
-                    case CashMapModel.MAP_PERCENT_MORE:
-                        snackbar.setText("未保存，分配比例超过了100% ！").show();
+                    case Constants.RESULT_MORE:
+                        snackbar.setText(R.string.snackbar_failed_more_percent).show();
                         break;
                     default:
                         break;
                 }
             }
         });
-        if (mViewPager.getCurrentItem() == 1) {
-            fab.setVisibility(View.VISIBLE);
-        } else {
-            fab.setVisibility(View.INVISIBLE);
-        }
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    fab.setVisibility(View.GONE);
+                } else {
+                    fab.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 }

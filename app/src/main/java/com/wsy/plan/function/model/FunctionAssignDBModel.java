@@ -1,5 +1,7 @@
 package com.wsy.plan.function.model;
 
+import com.wsy.plan.common.FormatUtils;
+
 import org.litepal.crud.DataSupport;
 
 /**
@@ -14,15 +16,15 @@ public class FunctionAssignDBModel extends DataSupport implements Cloneable {
     /**
      * 月收入
      */
-    public String fa_month_income;
+    String fa_month_income;
     /**
      * 预扣所得税
      */
-    public String fa_taxes;
+    String fa_taxes;
     /**
      * 每月税后收入
      */
-    public String fa_after_taxes;
+    String fa_after_taxes;
     /**
      * 每月税后收入百分比
      */
@@ -30,71 +32,71 @@ public class FunctionAssignDBModel extends DataSupport implements Cloneable {
     /**
      * 投资理财账户
      */
-    public String fa_finance;
+    String fa_finance;
     /**
      * 投资理财账户百分比
      */
-    public String fa_finance_percent;
+    String fa_finance_percent;
     /**
      * 自我成长账户
      */
-    public String fa_grow;
+    String fa_grow;
     /**
      * 自我成长账户百分比
      */
-    public String fa_grow_percent;
+    String fa_grow_percent;
     /**
      * 尽情娱乐账户
      */
-    public String fa_play;
+    String fa_play;
     /**
      * 尽情娱乐账户百分比
      */
-    public String fa_play_percent;
+    String fa_play_percent;
     /**
      * 长期计划账户
      */
-    public String fa_long_plan;
+    String fa_long_plan;
     /**
      * 长期计划账户百分比
      */
-    public String fa_long_plan_percent;
+    String fa_long_plan_percent;
     /**
      * 预备账户1
      */
-    public String fa_prepare_1;
+    String fa_prepare_1;
     /**
      * 预备账户1百分比
      */
-    public String fa_prepare_1_percent;
+    String fa_prepare_1_percent;
     /**
      * 预备账户2
      */
-    public String fa_prepare_2;
+    String fa_prepare_2;
     /**
      * 预备账户2百分比
      */
-    public String fa_prepare_2_percent;
+    String fa_prepare_2_percent;
     /**
      * 预备账户3
      */
-    public String fa_prepare_3;
+    String fa_prepare_3;
     /**
      * 预备账户3百分比
      */
-    public String fa_prepare_3_percent;
+    String fa_prepare_3_percent;
     /**
      * 生活必需支出
      */
-    public String fa_necessary;
+    String fa_necessary;
     /**
      * 生活必需支出百分比
      */
-    public String fa_necessary_percent;
+    String fa_necessary_percent;
     /**
      * 剩余可支配金额
      */
-    public String fa_left;
+    String fa_left;
 
     @Override
     public boolean equals(Object o) {
@@ -106,7 +108,8 @@ public class FunctionAssignDBModel extends DataSupport implements Cloneable {
         if (fa_flag != dbModel.fa_flag) return false;
         if (fa_month_income != null ? !fa_month_income.equals(dbModel.fa_month_income) : dbModel.fa_month_income != null)
             return false;
-        if (fa_taxes != null ? !fa_taxes.equals(dbModel.fa_taxes) : dbModel.fa_taxes != null) return false;
+        if (fa_taxes != null ? !fa_taxes.equals(dbModel.fa_taxes) : dbModel.fa_taxes != null)
+            return false;
         if (fa_after_taxes != null ? !fa_after_taxes.equals(dbModel.fa_after_taxes) : dbModel.fa_after_taxes != null)
             return false;
         if (fa_after_taxes_percent != null ? !fa_after_taxes_percent.equals(dbModel.fa_after_taxes_percent) : dbModel.fa_after_taxes_percent != null)
@@ -115,10 +118,12 @@ public class FunctionAssignDBModel extends DataSupport implements Cloneable {
             return false;
         if (fa_finance_percent != null ? !fa_finance_percent.equals(dbModel.fa_finance_percent) : dbModel.fa_finance_percent != null)
             return false;
-        if (fa_grow != null ? !fa_grow.equals(dbModel.fa_grow) : dbModel.fa_grow != null) return false;
+        if (fa_grow != null ? !fa_grow.equals(dbModel.fa_grow) : dbModel.fa_grow != null)
+            return false;
         if (fa_grow_percent != null ? !fa_grow_percent.equals(dbModel.fa_grow_percent) : dbModel.fa_grow_percent != null)
             return false;
-        if (fa_play != null ? !fa_play.equals(dbModel.fa_play) : dbModel.fa_play != null) return false;
+        if (fa_play != null ? !fa_play.equals(dbModel.fa_play) : dbModel.fa_play != null)
+            return false;
         if (fa_play_percent != null ? !fa_play_percent.equals(dbModel.fa_play_percent) : dbModel.fa_play_percent != null)
             return false;
         if (fa_long_plan != null ? !fa_long_plan.equals(dbModel.fa_long_plan) : dbModel.fa_long_plan != null)
@@ -212,5 +217,32 @@ public class FunctionAssignDBModel extends DataSupport implements Cloneable {
         dbModel.fa_necessary_percent = "50%";
         dbModel.fa_left = "0";
         return dbModel;
+    }
+
+    /**
+     * 填充数据库数据
+     */
+    public void setData(FunctionAssignModel model) {
+        fa_month_income = FormatUtils.formatSign(model.fa_month_income.get());
+        fa_taxes = FormatUtils.formatSign(model.fa_taxes.get());
+        fa_after_taxes = FormatUtils.formatSign(model.fa_after_taxes.get());
+        fa_after_taxes_percent = FormatUtils.formatPercent(model.fa_after_taxes_percent.get());
+        fa_finance = FormatUtils.formatSign(model.fa_finance.get());
+        fa_finance_percent = FormatUtils.formatPercent(model.fa_finance_percent.get());
+        fa_grow = FormatUtils.formatSign(model.fa_grow.get());
+        fa_grow_percent = FormatUtils.formatPercent(model.fa_grow_percent.get());
+        fa_play = FormatUtils.formatSign(model.fa_play.get());
+        fa_play_percent = FormatUtils.formatPercent(model.fa_play_percent.get());
+        fa_long_plan = FormatUtils.formatSign(model.fa_long_plan.get());
+        fa_long_plan_percent = FormatUtils.formatPercent(model.fa_long_plan_percent.get());
+        fa_prepare_1 = FormatUtils.formatSign(model.fa_prepare_1.get());
+        fa_prepare_1_percent = FormatUtils.formatPercent(model.fa_prepare_1_percent.get());
+        fa_prepare_2 = FormatUtils.formatSign(model.fa_prepare_2.get());
+        fa_prepare_2_percent = FormatUtils.formatPercent(model.fa_prepare_2_percent.get());
+        fa_prepare_3 = FormatUtils.formatSign(model.fa_prepare_3.get());
+        fa_prepare_3_percent = FormatUtils.formatPercent(model.fa_prepare_3_percent.get());
+        fa_necessary = FormatUtils.formatSign(model.fa_necessary.get());
+        fa_necessary_percent = FormatUtils.formatPercent(model.fa_necessary_percent.get());
+        fa_left = FormatUtils.formatSign(model.fa_left.get());
     }
 }

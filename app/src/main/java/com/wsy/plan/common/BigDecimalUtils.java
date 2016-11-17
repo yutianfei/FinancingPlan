@@ -14,6 +14,8 @@ public class BigDecimalUtils {
      * @return 两个参数的和
      */
     public static String add(String value1, String value2) {
+        value1 = TextUtils.isEmpty(value1) ? "0" : value1;
+        value2 = TextUtils.isEmpty(value2) ? "0" : value2;
         return new BigDecimal(value1).add(new BigDecimal(value2)).toString();
     }
 
@@ -26,9 +28,7 @@ public class BigDecimalUtils {
     public static String add(String[] values) {
         BigDecimal bigDecimal = new BigDecimal("0");
         for (String value : values) {
-            if (TextUtils.isEmpty(value)) {
-                value = "0";
-            }
+            value = TextUtils.isEmpty(value) ? "0" : value;
             bigDecimal = bigDecimal.add(new BigDecimal(value));
         }
         return bigDecimal.toString();
@@ -42,6 +42,8 @@ public class BigDecimalUtils {
      * @return 两个参数的差
      */
     public static String sub(String value1, String value2) {
+        value1 = TextUtils.isEmpty(value1) ? "0" : value1;
+        value2 = TextUtils.isEmpty(value2) ? "0" : value2;
         return new BigDecimal(value1).subtract(new BigDecimal(value2)).toString();
     }
 
@@ -53,6 +55,23 @@ public class BigDecimalUtils {
      * @return 两个参数的积
      */
     public static String multiply(String value1, String value2) {
+        value1 = TextUtils.isEmpty(value1) ? "0" : value1;
+        value2 = TextUtils.isEmpty(value2) ? "0" : value2;
+        BigDecimal result;
+        result = new BigDecimal(value1).multiply(new BigDecimal(value2));
+        return String.valueOf(result);
+    }
+
+    /**
+     * 提供精确乘法运算的mul方法
+     *
+     * @param value1 被乘数
+     * @param value2 乘数
+     * @return 两个参数的积
+     */
+    public static String multiplyPercent(String value1, String value2) {
+        value1 = TextUtils.isEmpty(value1) ? "0" : value1;
+        value2 = TextUtils.isEmpty(value2) ? "0" : value2;
         String v1 = value1;
         String v2 = value2;
         BigDecimal result;
@@ -62,12 +81,20 @@ public class BigDecimalUtils {
         if (value2.contains("%")) {
             v2 = value2.substring(0, value2.indexOf("%"));
         }
-        if (value1.contains("%") || value2.contains("%")) {
-            result = new BigDecimal(v1).multiply(new BigDecimal(v2))
-                    .divide(new BigDecimal("100"), BigDecimal.ROUND_HALF_UP);
-        } else {
-            result = new BigDecimal(v1).multiply(new BigDecimal(v2));
+        if ("%".equals(value1)) {
+            v1 = "0";
         }
+        if ("%".equals(value2)) {
+            v2 = "0";
+        }
+        if (TextUtils.isEmpty(v1)) {
+            v1 = "0";
+        }
+        if (TextUtils.isEmpty(v2)) {
+            v2 = "0";
+        }
+        result = new BigDecimal(v1).multiply(new BigDecimal(v2))
+                .divide(new BigDecimal("100"), BigDecimal.ROUND_HALF_UP);
         return String.valueOf(result);
     }
 
@@ -80,6 +107,8 @@ public class BigDecimalUtils {
      * @return 两个参数的商
      */
     public static String divide(String value1, String value2, int scale) {
+        value1 = TextUtils.isEmpty(value1) ? "0" : value1;
+        value2 = TextUtils.isEmpty(value2) ? "0" : value2;
         BigDecimal v1 = new BigDecimal(value1);
         BigDecimal v2 = new BigDecimal(value2);
         BigDecimal result = v1.divide(v2, scale, BigDecimal.ROUND_HALF_UP);

@@ -9,12 +9,6 @@ import com.wsy.plan.common.BigDecimalUtils;
  * 现金流分配地图数据模型
  */
 public class CashMapModel extends BaseObservable {
-
-    public static final int MAP_PERCENT_NOT_CHANGE = -1;
-    public static final int MAP_PERCENT_PERFECT = 0;
-    public static final int MAP_PERCENT_LESS = 1;
-    public static final int MAP_PERCENT_MORE = 2;
-
     /**
      * 备用金少于几个月
      */

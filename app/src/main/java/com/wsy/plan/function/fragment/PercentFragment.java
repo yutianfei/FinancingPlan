@@ -18,9 +18,7 @@ import com.wsy.plan.function.utils.EditTextDoubleUse;
 public class PercentFragment extends Fragment {
 
     FunctionAssignModel model = new FunctionAssignModel();
-
-    public PercentFragment() {
-    }
+    private EditTextDoubleUse doubleUse;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -38,8 +36,13 @@ public class PercentFragment extends Fragment {
         FragmentFaPercentBinding binding = DataBindingUtil.bind(rootView);
         binding.setModel(model);
 
-        EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FA_FLAG_PERCENT).initEditText();
+        doubleUse = EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FA_FLAG_PERCENT);
+        doubleUse.initData();
 
         return rootView;
+    }
+
+    public int update() {
+        return doubleUse.update();
     }
 }

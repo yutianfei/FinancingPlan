@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -72,6 +73,12 @@ public class Challenge52Activity extends BaseActivity {
      */
     private void compute() {
         String text = editPerWeek.getText().toString();
+        text = TextUtils.isEmpty(text) ? "0" : text;
+        if (text.length() > 1 && '0' == text.charAt(0)) {
+            text = text.substring(1);
+        }
+        editPerWeek.setText(text);
+
         // 更改了数据，则重新计算
         if (!perWeekOriginal.equals(text)) {
             for (int i = 1; i <= 52; i++) {
@@ -108,7 +115,7 @@ public class Challenge52Activity extends BaseActivity {
     public void onClickWeekItem(View view, ChallengeModel item) {
         // 提示信息
         final Snackbar snackbar = Snackbar.make(view, R.string.challenge_finished, Snackbar.LENGTH_LONG);
-        snackbar.setAction("继续努力", new View.OnClickListener() {
+        snackbar.setAction(R.string.challenge_go_on, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 snackbar.dismiss();

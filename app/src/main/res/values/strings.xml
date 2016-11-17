@@ -12,4 +12,10 @@
     <string name="title_activity_challenge_52">52周存钱挑战表</string>
     <string name="title_activity_cash_map">现金流分配地图</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="snackbar_action_complete">完成</string>
+    <string name="snackbar_save_ok">保存成功！</string>
+    <string name="snackbar_failed_less">未保存，还没有完成100%分配哦！</string>
+    <string name="snackbar_failed_more_percent">未保存，分配比例超过了100% ！</string>
+    <string name="snackbar_failed_more_money">未保存，分配总金额超过每月收入！</string>
 </resources>

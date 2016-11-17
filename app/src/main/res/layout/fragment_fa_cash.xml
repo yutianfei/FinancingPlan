@@ -53,7 +53,7 @@
                         <EditText
                             android:id="@+id/fa_month_income_input"
                             style="@style/fa_edit_input"
-                            android:text="@{model.fa_month_income}" />
+                            android:text="@={model.fa_month_income}" />
 
                         <EditText
                             style="@style/fa_edit_input"
@@ -99,7 +99,7 @@
                             <EditText
                                 android:id="@+id/fa_taxes_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_taxes}" />
+                                android:text="@={model.fa_taxes}" />
 
                             <EditText
                                 style="@style/fa_edit_input"
@@ -123,13 +123,13 @@
                                 android:id="@+id/fa_after_taxes_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_after_taxes}" />
+                                android:text="@={model.fa_after_taxes}" />
 
                             <EditText
                                 android:id="@+id/fa_after_taxes_percent_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_after_taxes_percent}" />
+                                android:text="@={model.fa_after_taxes_percent}" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -171,13 +171,13 @@
                             <EditText
                                 android:id="@+id/fa_finance_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_finance}" />
+                                android:text="@={model.fa_finance}" />
 
                             <EditText
                                 android:id="@+id/fa_finance_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_finance_percent}" />
+                                android:text="@={model.fa_finance_percent}" />
                         </LinearLayout>
 
                         <!-- 自我成长账户 -->
@@ -195,13 +195,13 @@
                             <EditText
                                 android:id="@+id/fa_grow_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_grow}" />
+                                android:text="@={model.fa_grow}" />
 
                             <EditText
                                 android:id="@+id/fa_grow_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_grow_percent}" />
+                                android:text="@={model.fa_grow_percent}" />
                         </LinearLayout>
 
                         <!-- 尽情娱乐账户 -->
@@ -219,13 +219,13 @@
                             <EditText
                                 android:id="@+id/fa_play_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_play}" />
+                                android:text="@={model.fa_play}" />
 
                             <EditText
                                 android:id="@+id/fa_play_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_play_percent}" />
+                                android:text="@={model.fa_play_percent}" />
                         </LinearLayout>
 
                         <!-- 长期计划账户 -->
@@ -243,13 +243,13 @@
                             <EditText
                                 android:id="@+id/fa_long_plan_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_long_plan}" />
+                                android:text="@={model.fa_long_plan}" />
 
                             <EditText
                                 android:id="@+id/fa_long_plan_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_long_plan_percent}" />
+                                android:text="@={model.fa_long_plan_percent}" />
                         </LinearLayout>
 
                         <!-- 预备账户1 -->
@@ -267,13 +267,13 @@
                             <EditText
                                 android:id="@+id/fa_prepare_1_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_prepare_1}" />
+                                android:text="@={model.fa_prepare_1}" />
 
                             <EditText
                                 android:id="@+id/fa_prepare_1_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_prepare_1_percent}" />
+                                android:text="@={model.fa_prepare_1_percent}" />
                         </LinearLayout>
 
                         <!-- 预备账户2 -->
@@ -291,13 +291,13 @@
                             <EditText
                                 android:id="@+id/fa_prepare_2_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_prepare_2}" />
+                                android:text="@={model.fa_prepare_2}" />
 
                             <EditText
                                 android:id="@+id/fa_prepare_2_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_prepare_2_percent}" />
+                                android:text="@={model.fa_prepare_2_percent}" />
                         </LinearLayout>
 
                         <!-- 预备账户3 -->
@@ -315,13 +315,13 @@
                             <EditText
                                 android:id="@+id/fa_prepare_3_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_prepare_3}" />
+                                android:text="@={model.fa_prepare_3}" />
 
                             <EditText
                                 android:id="@+id/fa_prepare_3_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_prepare_3_percent}" />
+                                android:text="@={model.fa_prepare_3_percent}" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -364,13 +364,13 @@
                             <EditText
                                 android:id="@+id/fa_necessary_input"
                                 style="@style/fa_edit_input"
-                                android:text="@{model.fa_necessary}" />
+                                android:text="@={model.fa_necessary}" />
 
                             <EditText
                                 android:id="@+id/fa_necessary_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_necessary_percent}" />
+                                android:text="@={model.fa_necessary_percent}" />
                         </LinearLayout>
 
                         <!-- 剩余可支配金额 -->
@@ -389,7 +389,7 @@
                                 android:id="@+id/fa_left_fixed"
                                 style="@style/fa_edit_input"
                                 android:enabled="false"
-                                android:text="@{model.fa_left}" />
+                                android:text="@={model.fa_left}" />
 
                             <EditText
                                 style="@style/fa_edit_input"

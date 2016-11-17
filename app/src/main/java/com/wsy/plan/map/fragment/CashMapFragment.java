@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wsy.plan.R;
+import com.wsy.plan.common.Constants;
 import com.wsy.plan.databinding.FragmentMapCashBinding;
 import com.wsy.plan.map.model.CashMapDBModel;
 import com.wsy.plan.map.model.CashMapModel;
@@ -55,10 +56,10 @@ public class CashMapFragment extends Fragment {
 
     public int update() {
         if (model.result() < 100) {
-            return CashMapModel.MAP_PERCENT_LESS;
+            return Constants.RESULT_LESS;
 
         } else if (model.result() > 100) {
-            return CashMapModel.MAP_PERCENT_MORE;
+            return Constants.RESULT_MORE;
 
         } else { // 完全分配
             // 进行赋值
@@ -73,9 +74,9 @@ public class CashMapFragment extends Fragment {
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
-                return CashMapModel.MAP_PERCENT_PERFECT;
+                return Constants.RESULT_PERFECT;
             }
-            return CashMapModel.MAP_PERCENT_NOT_CHANGE;
+            return Constants.RESULT_NOT_CHANGED;
         }
     }
 }

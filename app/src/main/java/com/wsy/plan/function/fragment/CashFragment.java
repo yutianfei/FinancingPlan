@@ -18,9 +18,7 @@ import com.wsy.plan.function.utils.EditTextDoubleUse;
 public class CashFragment extends Fragment {
 
     FunctionAssignModel model = new FunctionAssignModel();
-
-    public CashFragment() {
-    }
+    private EditTextDoubleUse doubleUse;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -38,8 +36,13 @@ public class CashFragment extends Fragment {
         FragmentFaCashBinding binding = DataBindingUtil.bind(rootView);
         binding.setModel(model);
 
-        EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FA_FLAG_CASH).initEditText();
+        doubleUse = EditTextDoubleUse.getInstance(rootView, model, FunctionAssignModel.FA_FLAG_CASH);
+        doubleUse.initData();
 
         return rootView;
+    }
+
+    public int update() {
+        return doubleUse.update();
     }
 }

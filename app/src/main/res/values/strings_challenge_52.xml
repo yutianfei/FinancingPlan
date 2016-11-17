@@ -7,5 +7,6 @@
     <string name="challenge_total">累计</string>
     <string name="challenge_finished">本周计划完成啦！</string>
     <string name="challenge_undo">计划尚未完成&#8230;</string>
+    <string name="challenge_go_on">继续努力</string>
 
 </resources>
