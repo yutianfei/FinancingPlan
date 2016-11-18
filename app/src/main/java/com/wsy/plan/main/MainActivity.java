@@ -3,6 +3,7 @@ package com.wsy.plan.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -28,12 +29,14 @@ import com.wsy.plan.function.FunctionAssignActivity;
 import com.wsy.plan.main.decorator.TodayDecorator;
 import com.wsy.plan.map.CashMapActivity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnDateSelectedListener {
 
     private String currentDate = "";
+    private MaterialCalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +68,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initAppBarLayout() {
-        //使用CollapsingToolbarLayout必须把title设置到CollapsingToolbarLayout上，设置到Toolbar上则不会显示
+        // 使用CollapsingToolbarLayout必须把title设置到CollapsingToolbarLayout上，设置到Toolbar上则不会显示
         CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
         mCollapsingToolbarLayout.setTitle(currentDate.substring(0, 11));
+        // 透明度渐变
+        AppBarLayout app_bar_layout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+        app_bar_layout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                float viewHeight = calendarView.getHeight();
+                float offset = calendarView.getHeight() - Math.abs(verticalOffset);
+                float alpha = new BigDecimal(offset).divide(new BigDecimal(viewHeight),
+                        BigDecimal.ROUND_HALF_UP, 4).floatValue();
+                calendarView.setAlpha(alpha);
+            }
+        });
     }
 
     private void initCalendarView() {
-        MaterialCalendarView calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
+        calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
         // 设置日期显示
         calendarView.setTitleFormatter(new TitleFormatter() {
             @Override
