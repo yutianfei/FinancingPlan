@@ -6,4 +6,14 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_today"
+        android:title="@string/action_today"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_select"
+        android:title="@string/action_select"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -34,6 +34,10 @@
             android:label="@string/title_activity_cash_map"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".main.AddActivity"
+            android:theme="@style/AppTheme.Dialog"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

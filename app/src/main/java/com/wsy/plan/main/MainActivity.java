@@ -1,5 +1,6 @@
 package com.wsy.plan.main;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,7 +8,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -25,6 +27,7 @@ import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.wsy.plan.R;
 import com.wsy.plan.challenge.Challenge52Activity;
 import com.wsy.plan.common.FormatUtils;
+import com.wsy.plan.common.Utils;
 import com.wsy.plan.function.FunctionAssignActivity;
 import com.wsy.plan.main.decorator.TodayDecorator;
 import com.wsy.plan.map.CashMapActivity;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity
     private String currentDate = "";
     private MaterialCalendarView calendarView;
 
+    private TextView tvMainNotice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +54,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // FIXME: RxBus
+                startActivity(new Intent(MainActivity.this, AddActivity.class));
             }
         });
 
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        tvMainNotice = (TextView) findViewById(R.id.tv_main_notice);
 
         initCalendarView();
         initAppBarLayout();
@@ -96,15 +103,13 @@ public class MainActivity extends AppCompatActivity
         });
         // 默认选中当天日期
         CalendarDay today = CalendarDay.today();
-        calendarView.setSelectedDate(today);
+        setSelectedDay(today);
         // 给当天日期添加背景
         ArrayList<CalendarDay> dates = new ArrayList<>();
         dates.add(today);
         calendarView.addDecorator(new TodayDecorator(dates, getDrawable(R.drawable.shape_circle_accent)));
         // 设置监听
         calendarView.setOnDateChangedListener(this);
-        // 保存当前日期
-        currentDate = FormatUtils.formatDate(today.getCalendar());
     }
 
     @Override
@@ -133,6 +138,19 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+
+        } else if (id == R.id.action_today) {
+            setSelectedDay(CalendarDay.today());
+            return true;
+
+        } else if (id == R.id.action_select) {
+            Utils.showDatePickerDialog(this, calendarView.getSelectedDate(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    setSelectedDay(CalendarDay.from(year, monthOfYear, dayOfMonth));
+                }
+            });
             return true;
         }
 
@@ -170,11 +188,28 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        // TODO
         String selectDate = FormatUtils.formatDate(date.getCalendar());
         if (!currentDate.equals(selectDate)) {
             Toast.makeText(MainActivity.this, selectDate, Toast.LENGTH_SHORT).show();
             currentDate = selectDate;
+            showRecords();
         }
+    }
+
+    /**
+     * 显示当日记录
+     */
+    private void showRecords() {
+        // TODO
+        tvMainNotice.setVisibility(View.GONE);
+    }
+
+    /**
+     * 设置当前日期
+     */
+    private void setSelectedDay(CalendarDay day) {
+        calendarView.setSelectedDate(day);
+        calendarView.setCurrentDate(day);
+        onDateSelected(calendarView, day, true);
     }
 }
