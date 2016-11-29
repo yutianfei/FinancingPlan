@@ -88,7 +88,8 @@
 
                 <Spinner
                     android:id="@+id/spinner_account_method"
-                    style="@style/main_right" />
+                    style="@style/main_right"
+                    android:entries="@array/main_method"/>
             </LinearLayout>
 
             <LinearLayout
@@ -102,7 +103,8 @@
 
                 <Spinner
                     android:id="@+id/spinner_account_first"
-                    style="@style/main_right" />
+                    style="@style/main_right"
+                    android:entries="@array/main_first" />
             </LinearLayout>
 
             <LinearLayout
@@ -116,7 +118,8 @@
 
                 <Spinner
                     android:id="@+id/spinner_add_second"
-                    style="@style/main_right" />
+                    style="@style/main_right"
+                    android:entries="@array/food" />
             </LinearLayout>
 
             <LinearLayout

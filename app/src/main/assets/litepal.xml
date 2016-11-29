@@ -35,6 +35,7 @@
         <mapping class="com.wsy.plan.function.model.FunctionAssignDBModel" />
         <mapping class="com.wsy.plan.challenge.model.ChallengeDBModel" />
         <mapping class="com.wsy.plan.map.model.CashMapDBModel" />
+        <mapping class="com.wsy.plan.main.model.AccountDBModel" />
     </list>
 
     <!--

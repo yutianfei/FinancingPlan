@@ -34,4 +34,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'org.litepal.android:core:1.4.0' // 数据库
     compile 'com.prolificinteractive:material-calendarview:1.4.2' // 日历控件
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'io.reactivex:rxandroid:1.2.1'
 }

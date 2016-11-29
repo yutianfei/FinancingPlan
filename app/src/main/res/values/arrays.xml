@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="income">收入</string>
+
+    <string-array name="main_method">
+        <item>现金</item>
+        <item>非手上现金</item>
+    </string-array>
+
+    <string-array name="main_first">
+        <item>主食</item>
+        <item>装扮</item>
+        <item>收入</item>
+    </string-array>
+
+    <string-array name="food">
+        <item>早餐</item>
+        <item>中餐</item>
+        <item>晚餐</item>
+    </string-array>
+
+    <string-array name="dress">
+        <item>衣服</item>
+        <item>鞋子</item>
+        <item>化妆品</item>
+    </string-array>
+
+    <string-array name="income">
+        <item>薪资1</item>
+        <item>薪资2</item>
+        <item>其他</item>
+    </string-array>
+
+</resources>
