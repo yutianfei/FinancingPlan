@@ -38,6 +38,10 @@
             android:name=".main.AddActivity"
             android:theme="@style/AppTheme.Dialog"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".main.UpdateActivity"
+            android:theme="@style/AppTheme.Dialog"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

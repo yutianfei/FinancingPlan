@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IAccountModelPresenter {
     List<AccountModel> getModels(String date);
-    boolean saveModel(AccountModel model);
+    long saveModel(AccountModel model);
     boolean deleteModel(long id);
+    boolean updateModel(long id, AccountModel model);
 }

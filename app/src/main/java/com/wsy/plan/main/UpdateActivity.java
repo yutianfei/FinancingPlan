@@ -12,31 +12,33 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.wsy.plan.R;
-import com.wsy.plan.databinding.ActivityAddBinding;
+import com.wsy.plan.databinding.ActivityUpdateBinding;
 import com.wsy.plan.main.model.AccountModel;
 import com.wsy.plan.main.model.TypeArrays;
 import com.wsy.plan.main.presenter.IAccountModelPresenter;
 import com.wsy.plan.main.presenter.LocalPresenter;
 import com.wsy.plan.rxbus.RxBus;
 
-public class AddActivity extends AppCompatActivity {
+public class UpdateActivity extends AppCompatActivity {
 
     private Spinner spinnerMethod, spinnerFirst, spinnerSecond;
 
     private String[][] typeArrays;
+    private int position;
     private AccountModel model = new AccountModel();
     private IAccountModelPresenter presenter = new LocalPresenter();
 
-    public static void startAction(Context context, String date) {
-        Intent intent = new Intent(context, AddActivity.class);
-        intent.putExtra("date", date);
+    public static void startAction(Context context, int position, AccountModel model) {
+        Intent intent = new Intent(context, UpdateActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("model", model);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityAddBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_add);
+        ActivityUpdateBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_update);
         binding.setModel(model);
         binding.setHandler(this);
 
@@ -44,7 +46,16 @@ public class AddActivity extends AppCompatActivity {
         setFinishOnTouchOutside(false);
 
         if (getIntent() != null) {
-            model.account_date.set(getIntent().getStringExtra("date"));
+            position = getIntent().getIntExtra("position", -1);
+            AccountModel am = (AccountModel) getIntent().getSerializableExtra("model");
+            model.id.set(am.id.get());
+            model.account_date.set(am.account_date.get());
+            model.account_method.set(am.account_method.get());
+            model.account_first.set(am.account_first.get());
+            model.account_second.set(am.account_second.get());
+            model.account_money.set(am.account_money.get());
+            model.account_comment.set(am.account_comment.get());
+            model.account_flag.set(am.account_flag.get());
         }
 
         initSpinners();
@@ -56,10 +67,33 @@ public class AddActivity extends AppCompatActivity {
         spinnerSecond = (Spinner) findViewById(R.id.spinner_add_second);
 
         typeArrays = TypeArrays.get(this);
+
+        // 设置已有的选项
+        for (int i = 0; i < TypeArrays.getMethod(this).length; i++) {
+            if (TypeArrays.getMethod(this)[i].equals(model.account_method.get())) {
+                spinnerMethod.setSelection(i);
+            }
+        }
+        for (int i = 0; i < TypeArrays.getFirst(this).length; i++) {
+            if (TypeArrays.getFirst(this)[i].equals(model.account_first.get())) {
+                spinnerFirst.setSelection(i);
+            }
+        }
+        for (String[] typeArray : typeArrays) {
+            for (int i = 0; i < typeArray.length; i++) {
+                if (typeArray[i].equals(model.account_second.get())) {
+                    spinnerSecond.setAdapter(new ArrayAdapter<>(UpdateActivity.this,
+                            android.R.layout.simple_spinner_dropdown_item, typeArray));
+                    spinnerSecond.setSelection(i);
+                }
+            }
+        }
+
+        // 绑定监听
         spinnerFirst.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                spinnerSecond.setAdapter(new ArrayAdapter<>(AddActivity.this,
+                spinnerSecond.setAdapter(new ArrayAdapter<>(UpdateActivity.this,
                         android.R.layout.simple_spinner_dropdown_item, typeArrays[i]));
             }
 
@@ -77,13 +111,12 @@ public class AddActivity extends AppCompatActivity {
         model.account_method.set((String) spinnerMethod.getSelectedItem());
         model.account_first.set((String) spinnerFirst.getSelectedItem());
         model.account_second.set((String) spinnerSecond.getSelectedItem());
-        if (presenter.saveModel(model) > -1) {
-            model.id.set(presenter.saveModel(model));
-            Toast.makeText(this, R.string.main_save_successfully, Toast.LENGTH_SHORT).show();
-            RxBus.getInstance().post(model);
+        if (presenter.updateModel(model.id.get(), model)) {
+            Toast.makeText(this, R.string.main_update_successfully, Toast.LENGTH_SHORT).show();
+            RxBus.getInstance().post(new Object[]{position, model});
             onBackPressed();
         } else {
-            Toast.makeText(this, R.string.main_save_failed, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.main_update_failed, Toast.LENGTH_SHORT).show();
         }
     }
 

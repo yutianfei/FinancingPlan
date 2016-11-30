@@ -3,11 +3,13 @@ package com.wsy.plan.main.model;
 import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 
+import java.io.Serializable;
+
 /**
  * 记账数据模型
  */
 
-public class AccountModel extends BaseObservable {
+public class AccountModel extends BaseObservable implements Serializable {
     public ObservableField<Long> id = new ObservableField<>();
     /**
      * 收入还是支出

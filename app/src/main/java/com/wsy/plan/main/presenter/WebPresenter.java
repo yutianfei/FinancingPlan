@@ -15,12 +15,17 @@ public class WebPresenter implements IAccountModelPresenter {
     }
 
     @Override
-    public boolean saveModel(AccountModel model) {
-        return false;
+    public long saveModel(AccountModel model) {
+        return 0;
     }
 
     @Override
     public boolean deleteModel(long id) {
+        return false;
+    }
+
+    @Override
+    public boolean updateModel(long id, AccountModel model) {
         return false;
     }
 }

@@ -41,6 +41,70 @@ public class AccountDBModel extends DataSupport {
      */
     String account_comment;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getAccount_flag() {
+        return account_flag;
+    }
+
+    public void setAccount_flag(int account_flag) {
+        this.account_flag = account_flag;
+    }
+
+    public String getAccount_date() {
+        return account_date;
+    }
+
+    public void setAccount_date(String account_date) {
+        this.account_date = account_date;
+    }
+
+    public String getAccount_method() {
+        return account_method;
+    }
+
+    public void setAccount_method(String account_method) {
+        this.account_method = account_method;
+    }
+
+    public String getAccount_first() {
+        return account_first;
+    }
+
+    public void setAccount_first(String account_first) {
+        this.account_first = account_first;
+    }
+
+    public String getAccount_second() {
+        return account_second;
+    }
+
+    public void setAccount_second(String account_second) {
+        this.account_second = account_second;
+    }
+
+    public String getAccount_money() {
+        return account_money;
+    }
+
+    public void setAccount_money(String account_money) {
+        this.account_money = account_money;
+    }
+
+    public String getAccount_comment() {
+        return account_comment;
+    }
+
+    public void setAccount_comment(String account_comment) {
+        this.account_comment = account_comment;
+    }
+
     /**
      * 填充数据库数据
      */

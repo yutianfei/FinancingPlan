@@ -32,6 +32,7 @@ import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.wsy.plan.R;
 import com.wsy.plan.challenge.Challenge52Activity;
 import com.wsy.plan.common.FormatUtils;
+import com.wsy.plan.common.OnRecyclerItemClickListener;
 import com.wsy.plan.common.Utils;
 import com.wsy.plan.function.FunctionAssignActivity;
 import com.wsy.plan.main.adapter.AccountListAdapter;
@@ -111,6 +112,13 @@ public class MainActivity extends AppCompatActivity
         adapter = new AccountListAdapter(modelList);
         recordsList.setAdapter(adapter);
         recordsList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        recordsList.addOnItemTouchListener(new OnRecyclerItemClickListener(recordsList) {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                UpdateActivity.startAction(MainActivity.this, position, modelList.get(position));
+            }
+        });
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override
@@ -133,7 +141,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initSubscription() {
-        Subscription refreshSubscription = RxBus.getInstance().toObserverable(AccountModel.class)
+        Subscription addSubscription = RxBus.getInstance().toObserverable(AccountModel.class)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<AccountModel>() {
@@ -142,7 +150,19 @@ public class MainActivity extends AppCompatActivity
                         addModel(model);
                     }
                 });
-        RxBus.getInstance().addSubscription(this, refreshSubscription);
+        Subscription updateSubscription = RxBus.getInstance().toObserverable(Object[].class)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Object[]>() {
+                    @Override
+                    public void call(Object[] obj) {
+                        int position = (int) obj[0];
+                        AccountModel model = (AccountModel) obj[1];
+                        updateModel(position, model);
+                    }
+                });
+        RxBus.getInstance().addSubscription(this, addSubscription);
+        RxBus.getInstance().addSubscription(this, updateSubscription);
     }
 
     private void initAppBarLayout() {
@@ -259,14 +279,14 @@ public class MainActivity extends AppCompatActivity
         if (!currentDate.equals(selectDate)) {
             mCollapsingToolbarLayout.setTitle(selectDate);
             currentDate = selectDate;
-            refreshData();
+            refreshList();
         }
     }
 
     /**
      * 刷新当日记录显示
      */
-    private void refreshData() {
+    private void refreshList() {
         modelList.clear();
         modelList.addAll(presenter.getModels(currentDate));
         if (modelList.size() > 0) {
@@ -299,6 +319,16 @@ public class MainActivity extends AppCompatActivity
             toast.setText(R.string.main_delete_failed);
         }
         toast.show();
+    }
+
+    /**
+     * 更新记录
+     */
+    private void updateModel(int position, AccountModel model) {
+        modelList.remove(position);
+        modelList.add(position, model);
+        adapter.notifyItemChanged(position);
+        refreshTotal();
     }
 
     /**

@@ -26,12 +26,19 @@ public class LocalPresenter implements IAccountModelPresenter {
     }
 
     @Override
-    public boolean saveModel(AccountModel model) {
-        return AccountDBModel.setData(model).save();
+    public long saveModel(AccountModel model) {
+        AccountDBModel dbModel = AccountDBModel.setData(model);
+        dbModel.save();
+        return dbModel.getId();
     }
 
     @Override
     public boolean deleteModel(long id) {
         return DataSupport.delete(AccountDBModel.class, id) > -1;
+    }
+
+    @Override
+    public boolean updateModel(long id, AccountModel model) {
+        return AccountDBModel.setData(model).update(id) > 0;
     }
 }

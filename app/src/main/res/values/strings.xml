@@ -11,6 +11,7 @@
     <string name="cancel">取消</string>
     <string name="save">保存</string>
     <string name="new_add">新增</string>
+    <string name="update">修改</string>
 
     <string name="money_unit">元</string>
 
@@ -39,6 +40,8 @@
     <string name="main_save_failed">保存失败</string>
     <string name="main_delete_successfully">删除成功</string>
     <string name="main_delete_failed">删除失败</string>
+    <string name="main_update_successfully">修改成功</string>
+    <string name="main_update_failed">修改失败</string>
 
     <string name="account_first_second">%1$s－%2$s</string>
 
