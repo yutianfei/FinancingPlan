@@ -17,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -132,15 +133,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initSubscription() {
-        Subscription refreshSubscription = RxBus.getInstance().toObserverable(String.class)
+        Subscription refreshSubscription = RxBus.getInstance().toObserverable(AccountModel.class)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<AccountModel>() {
                     @Override
-                    public void call(String s) {
-                        if ("OK".equals(s)) {
-                            refreshData();
-                        }
+                    public void call(AccountModel model) {
+                        addModel(model);
                     }
                 });
         RxBus.getInstance().addSubscription(this, refreshSubscription);
@@ -273,6 +272,17 @@ public class MainActivity extends AppCompatActivity
         if (modelList.size() > 0) {
             adapter.notifyDataSetChanged();
         }
+        refreshTotal();
+    }
+
+    /**
+     * 添加记录
+     */
+    private void addModel(AccountModel model) {
+        String money = TextUtils.isEmpty(model.account_money.get()) ? "0" : model.account_money.get();
+        model.account_money.set(money);
+        modelList.add(model);
+        adapter.notifyDataSetChanged();
         refreshTotal();
     }
 

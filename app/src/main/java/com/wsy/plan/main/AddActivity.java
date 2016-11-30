@@ -79,7 +79,7 @@ public class AddActivity extends AppCompatActivity {
         model.account_second.set((String) spinnerSecond.getSelectedItem());
         if (presenter.saveModel(model)) {
             Toast.makeText(this, R.string.main_save_successfully, Toast.LENGTH_SHORT).show();
-            RxBus.getInstance().post("OK");
+            RxBus.getInstance().post(model);
             onBackPressed();
         } else {
             Toast.makeText(this, R.string.main_save_failed, Toast.LENGTH_SHORT).show();
