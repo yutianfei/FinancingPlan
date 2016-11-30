@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity
         recordsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new AccountListAdapter(modelList);
         recordsList.setAdapter(adapter);
-        recordsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+        recordsList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
             @Override
@@ -271,12 +271,7 @@ public class MainActivity extends AppCompatActivity
         modelList.clear();
         modelList.addAll(presenter.getModels(currentDate));
         if (modelList.size() > 0) {
-            tvMainNotice.setVisibility(View.GONE);
-            recordsList.setVisibility(View.VISIBLE);
             adapter.notifyDataSetChanged();
-        } else {
-            tvMainNotice.setVisibility(View.VISIBLE);
-            recordsList.setVisibility(View.GONE);
         }
         refreshTotal();
     }
@@ -303,6 +298,8 @@ public class MainActivity extends AppCompatActivity
         String strIncome = "0";
         String strOut = "0";
         if (modelList.size() > 0) {
+            tvMainNotice.setVisibility(View.GONE);
+            recordsList.setVisibility(View.VISIBLE);
             // 计算收入和支出
             BigDecimal total = new BigDecimal("0");
             BigDecimal income = new BigDecimal("0");
@@ -314,6 +311,9 @@ public class MainActivity extends AppCompatActivity
             }
             strIncome = income.toString();
             strOut = total.subtract(income).toString();
+        } else {
+            tvMainNotice.setVisibility(View.VISIBLE);
+            recordsList.setVisibility(View.GONE);
         }
         tvIncome.setText(Html.fromHtml(getString(R.string.main_notice_income, strIncome)));
         tvOut.setText(Html.fromHtml(getString(R.string.main_notice_out, strOut)));
