@@ -14,9 +14,9 @@ import java.util.List;
 public class LocalPresenter implements IAccountModelPresenter {
 
     @Override
-    public List<AccountModel> getModels() {
+    public List<AccountModel> getModels(String date) {
         List<AccountModel> modelList = new ArrayList<>();
-        List<AccountDBModel> dbModelList = DataSupport.order("account_date").find(AccountDBModel.class);
+        List<AccountDBModel> dbModelList = DataSupport.where("account_date = ?", date).find(AccountDBModel.class);
         if (dbModelList != null && dbModelList.size() > 0) {
             for (AccountDBModel dbModel : dbModelList) {
                 modelList.add(AccountModel.setData(dbModel));
@@ -26,7 +26,12 @@ public class LocalPresenter implements IAccountModelPresenter {
     }
 
     @Override
-    public boolean updateModel(AccountModel model) {
+    public boolean saveModel(AccountModel model) {
         return AccountDBModel.setData(model).save();
+    }
+
+    @Override
+    public boolean deleteModel(long id) {
+        return DataSupport.delete(AccountDBModel.class, id) > -1;
     }
 }

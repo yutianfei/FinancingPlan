@@ -1,6 +1,6 @@
 package com.wsy.plan.main.model;
 
-import android.text.TextUtils;
+import com.wsy.plan.common.FormatUtils;
 
 import org.litepal.crud.DataSupport;
 
@@ -9,6 +9,7 @@ import org.litepal.crud.DataSupport;
  */
 
 public class AccountDBModel extends DataSupport {
+    long id;
     /**
      * 收入还是支出
      * 0:支出
@@ -50,7 +51,7 @@ public class AccountDBModel extends DataSupport {
         dbModel.account_method = model.account_method.get();
         dbModel.account_first = model.account_first.get();
         dbModel.account_second = model.account_second.get();
-        dbModel.account_money = TextUtils.isEmpty(model.account_money.get()) ? "0" : model.account_money.get();
+        dbModel.account_money = FormatUtils.formatMoney(model.account_money.get());
         dbModel.account_comment = model.account_comment.get();
         return dbModel;
     }

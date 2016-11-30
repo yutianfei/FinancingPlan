@@ -48,6 +48,29 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_green"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_main_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/main_notice_out"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_main_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_notice_income"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />

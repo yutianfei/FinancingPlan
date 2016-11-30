@@ -30,4 +30,33 @@ public class FormatUtils {
         }
         return str;
     }
+
+    public static String formatMoney(String str) {
+        String money = TextUtils.isEmpty(str) ? "0" : str;
+        if (".".equals(money)) {
+            money = "0";
+        }
+        if (money.contains(".")) {
+            String[] numbers = money.split("\\.");
+            if (numbers.length > 1) {
+                if (numbers[1].length() > 2) {
+                    money = numbers[0] + "." + numbers[1].substring(0, 2);
+                } else {
+                    money = numbers[0] + "." + numbers[1];
+                }
+            } else {
+                money = numbers[0];
+            }
+        }
+        if (money.contains(".")) {
+            String decimal = money.substring(money.indexOf(".") + 1);
+            if ("00".equals(decimal) || "0".equals(decimal)) {
+                money = money.substring(0, money.indexOf("."));
+            } else if (decimal.charAt(decimal.length() - 1) == '0') {
+                money = money.substring(0, money.length() - 1);
+            }
+        }
+        return money;
+    }
+
 }

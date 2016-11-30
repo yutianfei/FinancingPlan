@@ -77,7 +77,7 @@ public class AddActivity extends AppCompatActivity {
         model.account_method.set((String) spinnerMethod.getSelectedItem());
         model.account_first.set((String) spinnerFirst.getSelectedItem());
         model.account_second.set((String) spinnerSecond.getSelectedItem());
-        if (presenter.updateModel(model)) {
+        if (presenter.saveModel(model)) {
             Toast.makeText(this, R.string.main_save_successfully, Toast.LENGTH_SHORT).show();
             RxBus.getInstance().post("OK");
             onBackPressed();

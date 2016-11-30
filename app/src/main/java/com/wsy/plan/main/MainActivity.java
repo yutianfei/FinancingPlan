@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +35,7 @@ import com.wsy.plan.common.Utils;
 import com.wsy.plan.function.FunctionAssignActivity;
 import com.wsy.plan.main.adapter.AccountListAdapter;
 import com.wsy.plan.main.decorator.TodayDecorator;
+import com.wsy.plan.common.DividerItemDecoration;
 import com.wsy.plan.main.model.AccountModel;
 import com.wsy.plan.main.presenter.IAccountModelPresenter;
 import com.wsy.plan.main.presenter.LocalPresenter;
@@ -51,13 +54,16 @@ import rx.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnDateSelectedListener {
 
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private MaterialCalendarView calendarView;
-    private TextView tvMainNotice;
+    private TextView tvMainNotice, tvIncome, tvOut;
+    private RecyclerView recordsList;
 
     private IAccountModelPresenter presenter = new LocalPresenter();
     private List<AccountModel> modelList = new ArrayList<>();
     private AccountListAdapter adapter;
     private String currentDate = "";
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,27 +90,45 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         tvMainNotice = (TextView) findViewById(R.id.tv_main_notice);
+        tvIncome = (TextView) findViewById(R.id.tv_main_income);
+        tvOut = (TextView) findViewById(R.id.tv_main_out);
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
         initCalendarView();
         initAppBarLayout();
         initSubscription();
         initRecycleView();
-        refreshData();
-    }
 
-    private void refreshData() {
-        modelList.clear();
-        modelList.addAll(presenter.getModels());
-        adapter.clearMapData();
-        adapter.notifyDataSetChanged();
+        // 默认选中当天日期
+        setSelectedDay(CalendarDay.today());
     }
 
     private void initRecycleView() {
-        RecyclerView recordsList = (RecyclerView) findViewById(R.id.records_list);
+        recordsList = (RecyclerView) findViewById(R.id.records_list);
         recordsList.setHasFixedSize(true);
         recordsList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter = new AccountListAdapter(modelList);
         recordsList.setAdapter(adapter);
+        recordsList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                return makeMovementFlags(0, ItemTouchHelper.START);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                deleteModel(position);
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(recordsList);
     }
 
     private void initSubscription() {
@@ -124,8 +148,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initAppBarLayout() {
         // 使用CollapsingToolbarLayout必须把title设置到CollapsingToolbarLayout上，设置到Toolbar上则不会显示
-        CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
-        mCollapsingToolbarLayout.setTitle(currentDate);
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
         // 透明度渐变
         AppBarLayout app_bar_layout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         app_bar_layout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -149,12 +172,9 @@ public class MainActivity extends AppCompatActivity
                 return day.getYear() + "年" + (day.getMonth() + 1) + "月";
             }
         });
-        // 默认选中当天日期
-        CalendarDay today = CalendarDay.today();
-        setSelectedDay(today);
         // 给当天日期添加背景
         ArrayList<CalendarDay> dates = new ArrayList<>();
-        dates.add(today);
+        dates.add(CalendarDay.today());
         calendarView.addDecorator(new TodayDecorator(dates, getDrawable(R.drawable.shape_circle_accent)));
         // 设置监听
         calendarView.setOnDateChangedListener(this);
@@ -238,18 +258,65 @@ public class MainActivity extends AppCompatActivity
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
         String selectDate = FormatUtils.formatDate(date.getCalendar()).substring(0, 11);
         if (!currentDate.equals(selectDate)) {
-            Toast.makeText(MainActivity.this, selectDate, Toast.LENGTH_SHORT).show();
+            mCollapsingToolbarLayout.setTitle(selectDate);
             currentDate = selectDate;
-            showRecords();
+            refreshData();
         }
     }
 
     /**
-     * 显示当日记录
+     * 刷新当日记录显示
      */
-    private void showRecords() {
-        // TODO
-        tvMainNotice.setVisibility(View.GONE);
+    private void refreshData() {
+        modelList.clear();
+        modelList.addAll(presenter.getModels(currentDate));
+        if (modelList.size() > 0) {
+            tvMainNotice.setVisibility(View.GONE);
+            recordsList.setVisibility(View.VISIBLE);
+            adapter.notifyDataSetChanged();
+        } else {
+            tvMainNotice.setVisibility(View.VISIBLE);
+            recordsList.setVisibility(View.GONE);
+        }
+        refreshTotal();
+    }
+
+    /**
+     * 删除记录
+     */
+    private void deleteModel(int position) {
+        if (presenter.deleteModel(modelList.get(position).id.get())) {
+            adapter.notifyItemRemoved(position);
+            modelList.remove(position);
+            refreshTotal();
+            toast.setText(R.string.main_delete_successfully);
+        } else {
+            toast.setText(R.string.main_delete_failed);
+        }
+        toast.show();
+    }
+
+    /**
+     * 更新统计数据
+     */
+    private void refreshTotal() {
+        String strIncome = "0";
+        String strOut = "0";
+        if (modelList.size() > 0) {
+            // 计算收入和支出
+            BigDecimal total = new BigDecimal("0");
+            BigDecimal income = new BigDecimal("0");
+            for (AccountModel model : modelList) {
+                total = total.add(new BigDecimal(model.account_money.get()));
+                if (getString(R.string.income).equals(model.account_first.get())) {
+                    income = income.add(new BigDecimal(model.account_money.get()));
+                }
+            }
+            strIncome = income.toString();
+            strOut = total.subtract(income).toString();
+        }
+        tvIncome.setText(Html.fromHtml(getString(R.string.main_notice_income, strIncome)));
+        tvOut.setText(Html.fromHtml(getString(R.string.main_notice_out, strOut)));
     }
 
     /**
@@ -259,12 +326,6 @@ public class MainActivity extends AppCompatActivity
         calendarView.setSelectedDate(day);
         calendarView.setCurrentDate(day);
         onDateSelected(calendarView, day, true);
-    }
-
-    /**
-     * 处理点击事件
-     */
-    public void onClickWeekItem(View view, AccountModel item) {
     }
 
     @Override

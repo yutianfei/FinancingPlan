@@ -5,6 +5,7 @@ import com.wsy.plan.main.model.AccountModel;
 import java.util.List;
 
 public interface IAccountModelPresenter {
-    List<AccountModel> getModels();
-    boolean updateModel(AccountModel model);
+    List<AccountModel> getModels(String date);
+    boolean saveModel(AccountModel model);
+    boolean deleteModel(long id);
 }

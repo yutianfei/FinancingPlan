@@ -10,12 +10,17 @@ import java.util.List;
 public class WebPresenter implements IAccountModelPresenter {
 
     @Override
-    public List<AccountModel> getModels() {
+    public List<AccountModel> getModels(String date) {
         return null;
     }
 
     @Override
-    public boolean updateModel(AccountModel model) {
+    public boolean saveModel(AccountModel model) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteModel(long id) {
         return false;
     }
 }

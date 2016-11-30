@@ -8,6 +8,7 @@ import android.databinding.ObservableField;
  */
 
 public class AccountModel extends BaseObservable {
+    public ObservableField<Long> id = new ObservableField<>();
     /**
      * 收入还是支出
      * 0:支出
@@ -41,6 +42,7 @@ public class AccountModel extends BaseObservable {
 
     public static AccountModel setData(AccountDBModel dbModel) {
         AccountModel model = new AccountModel();
+        model.id.set(dbModel.id);
         model.account_flag.set(dbModel.account_flag);
         model.account_date.set(dbModel.account_date);
         model.account_method.set(dbModel.account_method);

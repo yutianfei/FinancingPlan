@@ -10,4 +10,6 @@
     <color name="common_divider">#DEDEDE</color>
     <color name="common_yellow">#FCF870</color>
     <color name="common_bg_color">#F8F8F8</color>
+
+    <color name="common_green">#7BB53F</color>
 </resources>
