@@ -10,7 +10,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,13 +30,14 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.wsy.plan.R;
 import com.wsy.plan.challenge.Challenge52Activity;
+import com.wsy.plan.common.DividerItemDecoration;
 import com.wsy.plan.common.FormatUtils;
 import com.wsy.plan.common.OnRecyclerItemClickListener;
+import com.wsy.plan.common.SmoothActionBarDrawerToggle;
 import com.wsy.plan.common.Utils;
 import com.wsy.plan.function.FunctionAssignActivity;
 import com.wsy.plan.main.adapter.AccountListAdapter;
 import com.wsy.plan.main.decorator.TodayDecorator;
-import com.wsy.plan.common.DividerItemDecoration;
 import com.wsy.plan.main.model.AccountModel;
 import com.wsy.plan.main.presenter.IAccountModelPresenter;
 import com.wsy.plan.main.presenter.LocalPresenter;
@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity
     private TextView tvMainNotice, tvIncome, tvOut;
     private RecyclerView recordsList;
 
+    private NavigationView navigationView;
+    private DrawerLayout drawer;
+    private SmoothActionBarDrawerToggle toggle;
+
     private IAccountModelPresenter presenter = new LocalPresenter();
     private List<AccountModel> modelList = new ArrayList<>();
     private AccountListAdapter adapter;
@@ -82,14 +86,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new SmoothActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_account_books);
 
         tvMainNotice = (TextView) findViewById(R.id.tv_main_notice);
         tvIncome = (TextView) findViewById(R.id.tv_main_income);
@@ -141,6 +146,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initSubscription() {
+        Subscription navSubscription = RxBus.getInstance().toObserverable(String.class)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        if ("onBackPressed".equals(s)) {
+                            navigationView.setCheckedItem(R.id.nav_account_books);
+                        }
+                    }
+                });
         Subscription addSubscription = RxBus.getInstance().toObserverable(AccountModel.class)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -161,6 +177,7 @@ public class MainActivity extends AppCompatActivity
                         updateModel(position, model);
                     }
                 });
+        RxBus.getInstance().addSubscription(this, navSubscription);
         RxBus.getInstance().addSubscription(this, addSubscription);
         RxBus.getInstance().addSubscription(this, updateSubscription);
     }
@@ -252,15 +269,30 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_function_assign) {
             // 功能账户现金流分配
-            startActivity(new Intent(this, FunctionAssignActivity.class));
+            toggle.runWhenIdle(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(new Intent(MainActivity.this, FunctionAssignActivity.class));
+                }
+            });
 
         } else if (id == R.id.nav_52_challenge) {
             // 52周存钱挑战表
-            startActivity(new Intent(this, Challenge52Activity.class));
+            toggle.runWhenIdle(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(new Intent(MainActivity.this, Challenge52Activity.class));
+                }
+            });
 
         } else if (id == R.id.nav_cash_map) {
             // 现金流分配地图
-            startActivity(new Intent(this, CashMapActivity.class));
+            toggle.runWhenIdle(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(new Intent(MainActivity.this, CashMapActivity.class));
+                }
+            });
 
         } else if (id == R.id.nav_share) {
 
@@ -268,7 +300,6 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
