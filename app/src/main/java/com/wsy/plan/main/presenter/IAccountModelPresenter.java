@@ -6,7 +6,14 @@ import java.util.List;
 
 public interface IAccountModelPresenter {
     List<AccountModel> getModels(String date);
+
     long saveModel(AccountModel model);
+
     boolean deleteModel(long id);
+
     boolean updateModel(long id, AccountModel model);
+
+    String getMonthOut(String type, String month);
+
+    String getMonthIncome(String type, String month);
 }

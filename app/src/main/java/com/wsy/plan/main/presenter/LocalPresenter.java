@@ -41,4 +41,19 @@ public class LocalPresenter implements IAccountModelPresenter {
     public boolean updateModel(long id, AccountModel model) {
         return AccountDBModel.setData(model).update(id) > 0;
     }
+
+    @Override
+    public String getMonthOut(String type, String month) {
+        float out = DataSupport.where("account_date like ?", month + "%")
+                .sum(AccountDBModel.class, "account_money", Float.class) -
+                DataSupport.where("account_first = ? AND account_date like ?", type, month + "%")
+                        .sum(AccountDBModel.class, "account_money", Float.class);
+        return out + "";
+    }
+
+    @Override
+    public String getMonthIncome(String type, String month) {
+        return DataSupport.where("account_first = ? AND account_date like ?", type, month + "%")
+                .sum(AccountDBModel.class, "account_money", Float.class) + "";
+    }
 }

@@ -28,4 +28,14 @@ public class WebPresenter implements IAccountModelPresenter {
     public boolean updateModel(long id, AccountModel model) {
         return false;
     }
+
+    @Override
+    public String getMonthOut(String type, String month) {
+        return null;
+    }
+
+    @Override
+    public String getMonthIncome(String type, String month) {
+        return null;
+    }
 }

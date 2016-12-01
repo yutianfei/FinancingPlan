@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private MaterialCalendarView calendarView;
-    private TextView tvMainNotice, tvIncome, tvOut;
+    private TextView tvMainNotice, tvIncome, tvOut, tvMonthIncome, tvMonthOut;
     private RecyclerView recordsList;
 
     private NavigationView navigationView;
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity
     private List<AccountModel> modelList = new ArrayList<>();
     private AccountListAdapter adapter;
     private String currentDate = "";
+    private String currentMonth = "";
     private Toast toast;
 
     @Override
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity
         tvMainNotice = (TextView) findViewById(R.id.tv_main_notice);
         tvIncome = (TextView) findViewById(R.id.tv_main_income);
         tvOut = (TextView) findViewById(R.id.tv_main_out);
+        tvMonthIncome = (TextView) findViewById(R.id.tv_month_income);
+        tvMonthOut = (TextView) findViewById(R.id.tv_month_out);
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
         initCalendarView();
@@ -312,6 +315,12 @@ public class MainActivity extends AppCompatActivity
             currentDate = selectDate;
             refreshList();
         }
+
+        String selectMonth = selectDate.substring(0, 7);
+        if (!currentMonth.equals(selectMonth)) {
+            currentMonth = selectMonth;
+            refreshMonthTotal();
+        }
     }
 
     /**
@@ -323,7 +332,7 @@ public class MainActivity extends AppCompatActivity
         if (modelList.size() > 0) {
             adapter.notifyDataSetChanged();
         }
-        refreshTotal();
+        refreshDayTotal();
     }
 
     /**
@@ -334,7 +343,8 @@ public class MainActivity extends AppCompatActivity
         model.account_money.set(money);
         modelList.add(model);
         adapter.notifyDataSetChanged();
-        refreshTotal();
+        refreshDayTotal();
+        refreshMonthTotal();
     }
 
     /**
@@ -344,7 +354,8 @@ public class MainActivity extends AppCompatActivity
         if (presenter.deleteModel(modelList.get(position).id.get())) {
             adapter.notifyItemRemoved(position);
             modelList.remove(position);
-            refreshTotal();
+            refreshDayTotal();
+            refreshMonthTotal();
             toast.setText(R.string.main_delete_successfully);
         } else {
             toast.setText(R.string.main_delete_failed);
@@ -359,13 +370,14 @@ public class MainActivity extends AppCompatActivity
         modelList.remove(position);
         modelList.add(position, model);
         adapter.notifyItemChanged(position);
-        refreshTotal();
+        refreshDayTotal();
+        refreshMonthTotal();
     }
 
     /**
-     * 更新统计数据
+     * 更新当日统计数据
      */
-    private void refreshTotal() {
+    private void refreshDayTotal() {
         String strIncome = "0";
         String strOut = "0";
         if (modelList.size() > 0) {
@@ -386,8 +398,18 @@ public class MainActivity extends AppCompatActivity
             tvMainNotice.setVisibility(View.VISIBLE);
             recordsList.setVisibility(View.GONE);
         }
-        tvIncome.setText(Html.fromHtml(getString(R.string.main_notice_income, strIncome)));
-        tvOut.setText(Html.fromHtml(getString(R.string.main_notice_out, strOut)));
+        tvIncome.setText(Html.fromHtml(getString(R.string.main_notice_income, FormatUtils.formatMoney(strIncome))));
+        tvOut.setText(Html.fromHtml(getString(R.string.main_notice_out, FormatUtils.formatMoney(strOut))));
+    }
+
+    /**
+     * 更新当月统计数据
+     */
+    private void refreshMonthTotal() {
+        String strIncome = presenter.getMonthIncome(getString(R.string.income), currentMonth);
+        String strOut = presenter.getMonthOut(getString(R.string.income), currentMonth);
+        tvMonthIncome.setText(Html.fromHtml(getString(R.string.main_month_income, FormatUtils.formatMoney(strIncome))));
+        tvMonthOut.setText(Html.fromHtml(getString(R.string.main_month_out, FormatUtils.formatMoney(strOut))));
     }
 
     /**

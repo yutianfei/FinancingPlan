@@ -53,7 +53,35 @@
             android:layout_height="wrap_content"
             android:background="@color/common_green"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/tv_month_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/main_month_out"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_month_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_month_income"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_green"
+            android:orientation="horizontal"
+            android:paddingTop="2dp"
+            android:paddingBottom="6dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
 
             <TextView
                 android:id="@+id/tv_main_out"

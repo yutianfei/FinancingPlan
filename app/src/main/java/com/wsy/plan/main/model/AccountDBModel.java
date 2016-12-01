@@ -35,7 +35,7 @@ public class AccountDBModel extends DataSupport {
     /**
      * 金额
      */
-    String account_money;
+    float account_money;
     /**
      * 备注
      */
@@ -89,11 +89,11 @@ public class AccountDBModel extends DataSupport {
         this.account_second = account_second;
     }
 
-    public String getAccount_money() {
+    public float getAccount_money() {
         return account_money;
     }
 
-    public void setAccount_money(String account_money) {
+    public void setAccount_money(float account_money) {
         this.account_money = account_money;
     }
 
@@ -115,7 +115,7 @@ public class AccountDBModel extends DataSupport {
         dbModel.account_method = model.account_method.get();
         dbModel.account_first = model.account_first.get();
         dbModel.account_second = model.account_second.get();
-        dbModel.account_money = FormatUtils.formatMoney(model.account_money.get());
+        dbModel.account_money = Float.parseFloat(FormatUtils.formatMoney(model.account_money.get()));
         dbModel.account_comment = model.account_comment.get();
         return dbModel;
     }

@@ -50,7 +50,7 @@ public class AccountModel extends BaseObservable implements Serializable {
         model.account_method.set(dbModel.account_method);
         model.account_first.set(dbModel.account_first);
         model.account_second.set(dbModel.account_second);
-        model.account_money.set(dbModel.account_money);
+        model.account_money.set(dbModel.account_money + "");
         model.account_comment.set(dbModel.account_comment);
         return model;
     }
