@@ -42,6 +42,15 @@
             android:name=".main.UpdateActivity"
             android:theme="@style/AppTheme.Dialog"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".setting.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".setting.SettingFixedActivity"
+            android:label="@string/setting_fixed"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

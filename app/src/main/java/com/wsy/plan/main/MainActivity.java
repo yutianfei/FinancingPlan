@@ -43,6 +43,7 @@ import com.wsy.plan.main.presenter.IAccountModelPresenter;
 import com.wsy.plan.main.presenter.LocalPresenter;
 import com.wsy.plan.map.CashMapActivity;
 import com.wsy.plan.rxbus.RxBus;
+import com.wsy.plan.setting.SettingActivity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -297,10 +298,9 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_setting) {
+            // 设置
+            startActivity(new Intent(MainActivity.this, SettingActivity.class));
         }
 
         drawer.closeDrawer(GravityCompat.START);

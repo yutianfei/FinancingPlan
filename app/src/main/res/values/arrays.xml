@@ -6,11 +6,24 @@
     <string-array name="main_method">
         <item>现金</item>
         <item>非手上现金</item>
+        <item>信用卡</item>
     </string-array>
 
     <string-array name="main_first">
         <item>主食</item>
-        <item>装扮</item>
+        <item>副食</item>
+        <item>零食饮料</item>
+        <item>日用品</item>
+        <item>交通费</item>
+        <item>医疗费</item>
+        <item>外在打扮</item>
+        <item>网购</item>
+        <item>游玩</item>
+        <item>红包</item>
+        <item>固定支出</item>
+        <item>贷款支出</item>
+        <item>还信用卡</item>
+        <item>其他支出</item>
         <item>收入</item>
     </string-array>
 
@@ -18,17 +31,111 @@
         <item>早餐</item>
         <item>中餐</item>
         <item>晚餐</item>
+        <item>宵夜</item>
+    </string-array>
+
+    <string-array name="food2">
+        <item>牛奶</item>
+        <item>水果</item>
+        <item>面包</item>
+        <item>泡面</item>
+        <item>鸡蛋</item>
+    </string-array>
+
+    <string-array name="drink">
+        <item>饮料</item>
+        <item>咖啡</item>
+        <item>酒</item>
+        <item>零食</item>
+        <item>甜点</item>
+    </string-array>
+
+    <string-array name="commodity">
+        <item>文具</item>
+        <item>清洁用品</item>
+        <item>沐浴用品</item>
+        <item>洗衣</item>
+        <item>卫生纸</item>
+        <item>生理用品</item>
+    </string-array>
+
+    <string-array name="traffic">
+        <item>加油</item>
+        <item>停车</item>
+        <item>高速公路</item>
+        <item>公交</item>
+        <item>地铁</item>
+        <item>火车</item>
+        <item>客运</item>
+        <item>飞机</item>
+    </string-array>
+
+    <string-array name="hospital">
+        <item>挂号</item>
+        <item>西医</item>
+        <item>中医</item>
+        <item>牙医</item>
+        <item>保健</item>
     </string-array>
 
     <string-array name="dress">
         <item>衣服</item>
         <item>鞋子</item>
+        <item>手套帽子</item>
         <item>化妆品</item>
     </string-array>
+
+    <string-array name="online">
+        <item>京东</item>
+        <item>天猫</item>
+        <item>苏宁易购</item>
+        <item>亚马逊</item>
+    </string-array>
+
+    <string-array name="tourism">
+        <item>门票</item>
+        <item>饮食</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="red">
+        <item>婚宴</item>
+        <item>生子</item>
+        <item>节庆</item>
+    </string-array>
+
+    <string-array name="regular">
+        <item>水电天然气</item>
+        <item>房租、管理</item>
+        <item>手机电话</item>
+        <item>网络电信</item>
+        <item>汽车保养</item>
+        <item>车险</item>
+        <item>车审</item>
+        <item>VPN</item>
+        <item>小区停车费</item>
+        <item>饿了么会员</item>
+        <item>爱奇艺会员</item>
+    </string-array>
+
+    <string-array name="loan">
+        <item>车贷</item>
+        <item>房贷</item>
+        <item>就学贷款</item>
+    </string-array>
+
+    <string-array name="credit">
+        <item>广发信用卡</item>
+        <item>招行信用卡</item>
+    </string-array>
+
+    <string-array name="other" />
 
     <string-array name="income">
         <item>薪资1</item>
         <item>薪资2</item>
+        <item>奖金红利</item>
+        <item>利息股息</item>
         <item>其他</item>
     </string-array>
 

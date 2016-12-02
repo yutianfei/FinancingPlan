@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="handler"
+            type="com.wsy.plan.setting.SettingFixedActivity" />
+
+        <variable
+            name="model"
+            type="com.wsy.plan.setting.model.TypeModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/edit_second"
+            style="@style/fixed_item"
+            android:text="@={model.type_second}" />
+
+        <EditText
+            android:id="@+id/edit_money"
+            style="@style/fixed_item"
+            android:inputType="numberDecimal"
+            android:text="@={model.type_money}" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/fixed_item_wrap"
+                android:text="@string/setting_fixed_date_label" />
+
+            <EditText
+                android:id="@+id/edit_day"
+                style="@style/fixed_item_wrap"
+                android:layout_width="30dp"
+                android:gravity="center"
+                android:inputType="date"
+                android:text="@={model.type_date}" />
+
+            <TextView
+                style="@style/fixed_item_wrap"
+                android:text="@string/setting_fixed_date_day" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
