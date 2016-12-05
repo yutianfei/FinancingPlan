@@ -6,4 +6,6 @@
     <string name="setting_fixed_date">支出日期</string>
     <string name="setting_fixed_date_label">每月</string>
     <string name="setting_fixed_date_day">号</string>
+    <string name="setting_fixed_money_total">(%1$s元)</string>
+    <string name="setting_fixed_number">(%1$d)</string>
 </resources>

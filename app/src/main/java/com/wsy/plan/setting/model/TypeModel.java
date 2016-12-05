@@ -1,6 +1,7 @@
 package com.wsy.plan.setting.model;
 
 import android.databinding.Bindable;
+import android.support.annotation.NonNull;
 
 import com.wsy.plan.BR;
 import com.wsy.plan.common.MyBaseObservable;
@@ -9,7 +10,7 @@ import com.wsy.plan.common.MyBaseObservable;
  * 支出数据模型
  */
 
-public class TypeModel extends MyBaseObservable {
+public class TypeModel extends MyBaseObservable implements Comparable {
     private long id;
     private String type_first;
     private String type_second;
@@ -58,5 +59,13 @@ public class TypeModel extends MyBaseObservable {
     public void setType_money(String type_money) {
         this.type_money = type_money;
         notifyPropertyChanged(BR.type_money);
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        TypeModel model2 = (TypeModel) o;
+        int money1 = Integer.parseInt(this.getType_money());
+        int money2 = Integer.parseInt(model2.getType_money());
+        return money2 - money1;
     }
 }

@@ -10,13 +10,41 @@
     android:paddingStart="10dp"
     android:paddingTop="12dp">
 
-    <TextView
-        style="@style/fixed_header"
-        android:text="@string/setting_fixed_category" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <TextView
-        style="@style/fixed_header"
-        android:text="@string/setting_fixed_money" />
+        <TextView
+            style="@style/fixed_header_wrap"
+            android:text="@string/setting_fixed_category" />
+
+        <TextView
+            android:id="@+id/tv_fixed_number"
+            style="@style/fixed_header_wrap"
+            android:text="@string/setting_fixed_number"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/fixed_header_wrap"
+            android:text="@string/setting_fixed_money" />
+
+        <TextView
+            android:id="@+id/tv_fixed_total"
+            style="@style/fixed_header_wrap"
+            android:text="@string/setting_fixed_money_total"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <TextView
         style="@style/fixed_header"

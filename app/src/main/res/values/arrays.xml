@@ -2,6 +2,7 @@
 <resources>
 
     <string name="income">收入</string>
+    <string name="regular">固定支出</string>
 
     <string-array name="main_method">
         <item>现金</item>

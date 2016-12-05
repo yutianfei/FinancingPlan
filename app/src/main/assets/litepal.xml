@@ -36,6 +36,8 @@
         <mapping class="com.wsy.plan.challenge.model.ChallengeDBModel" />
         <mapping class="com.wsy.plan.map.model.CashMapDBModel" />
         <mapping class="com.wsy.plan.main.model.AccountDBModel" />
+        <mapping class="com.wsy.plan.setting.model.TypeModel" />
+        <mapping class="com.wsy.plan.setting.model.HasTypesChanged" />
     </list>
 
     <!--
