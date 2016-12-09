@@ -28,6 +28,8 @@ public class UpdateActivity extends AppCompatActivity {
     private AccountModel model = new AccountModel();
     private IAccountModelPresenter presenter = new LocalPresenter();
 
+    private boolean isStart = true;
+
     public static void startAction(Context context, int position, AccountModel model) {
         Intent intent = new Intent(context, UpdateActivity.class);
         intent.putExtra("position", position);
@@ -74,18 +76,9 @@ public class UpdateActivity extends AppCompatActivity {
                 spinnerMethod.setSelection(i);
             }
         }
-        for (int i = 0; i < TypeArrays.getFirst(this).length; i++) {
-            if (TypeArrays.getFirst(this)[i].equals(model.account_first.get())) {
-                spinnerFirst.setSelection(i);
-            }
-        }
-        for (String[] typeArray : typeArrays) {
-            for (int i = 0; i < typeArray.length; i++) {
-                if (typeArray[i].equals(model.account_second.get())) {
-                    spinnerSecond.setAdapter(new ArrayAdapter<>(UpdateActivity.this,
-                            android.R.layout.simple_spinner_dropdown_item, typeArray));
-                    spinnerSecond.setSelection(i);
-                }
+        for (int j = 0; j < TypeArrays.getFirst(this).length; j++) {
+            if (TypeArrays.getFirst(this)[j].equals(model.account_first.get())) {
+                spinnerFirst.setSelection(j);
             }
         }
 
@@ -95,6 +88,14 @@ public class UpdateActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spinnerSecond.setAdapter(new ArrayAdapter<>(UpdateActivity.this,
                         android.R.layout.simple_spinner_dropdown_item, typeArrays[i]));
+                if (isStart) { // 如果是初次选择，则默认选中保存的数据
+                    for (int k = 0; k < spinnerSecond.getCount(); k++) {
+                        if (spinnerSecond.getItemAtPosition(k).equals(model.account_second.get())) {
+                            spinnerSecond.setSelection(k);
+                        }
+                    }
+                    isStart = false;
+                }
             }
 
             @Override
